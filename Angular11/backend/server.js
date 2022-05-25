@@ -2,7 +2,7 @@ const express = require("express");     //Import express and cors modules
 const cors = require("cors");
 const app = express();
 var corsOptions = {
-  origin: true//"http://localhost:4200" //Changed portto 4200 to match de docker config (docker-compose.yml)
+  origin: true//"http://localhost:4200" //Changed port to 4200 to match de docker config (docker-compose.yml)
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
