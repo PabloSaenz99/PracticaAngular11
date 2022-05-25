@@ -6,6 +6,8 @@ services:
     build: angular-client # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port forewarding
+    depends_on:
+      - "express"
     volumes:
       - ./angular-client:/app # this will enable changes made to the angular app reflect in the container
 
@@ -13,6 +15,8 @@ services:
     build: express-server # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
+    depends_on:
+       - "database"
     links:
       - database
 

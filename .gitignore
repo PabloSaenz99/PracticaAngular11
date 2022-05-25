@@ -37,9 +37,11 @@ yarn-error.log
 testem.log
 /typings
 
+**/.angular/cache
+
 # System files
 .DS_Store
 Thumbs.db
 
 #VSCode
-.vscode
+.vscode/
