@@ -2,7 +2,7 @@ const express = require("express");     //Import express and cors modules
 const cors = require("cors");
 const app = express();
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:4200" //Changed portto 4200 to match de docker config (docker-compose.yml)
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
@@ -14,16 +14,16 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require("./routes/tutorial.routes")(app);
+require("./app/routes/tutorial.routes")(app);
 // set port, listen for requests
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;  //Changed port from 8080 to 3000 to match de docker config (docker-compose.yml)
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
 
-const db = require("./models");
+const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,

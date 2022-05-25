@@ -1,0 +1,26 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  database: # name of the first service (database)
+    image: mongo # specify image to build container from
+    ports:
+      - "27017:27017" # specify port forwarding
+
+  express: #name of the second service (back)
+    build: backend # specify the directory of the Dockerfile
+    ports:
+      - "3000:3000" #specify ports forewarding
+    depends_on:
+       - "database" #starts aftr database service
+    links:
+      - database
+
+  angular: # name of the third service (front)
+    build: frontend # specify the directory of the Dockerfile
+    ports:
+      - "4200:4200" # specify port forewarding
+    depends_on:
+      - "express" #starts after express service
+    volumes:
+      - ./frontend:/app # this will enable changes made to the angular app reflect in the container
