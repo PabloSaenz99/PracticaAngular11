@@ -2,25 +2,25 @@ version: '2' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
-  angular: # name of the first service
-    build: angular-client # specify the directory of the Dockerfile
+  database: # name of the first service (database)
+    image: mongo # specify image to build container from
     ports:
-      - "4200:4200" # specify port forewarding
-    depends_on:
-      - "express"
-    volumes:
-      - ./angular-client:/app # this will enable changes made to the angular app reflect in the container
+      - "27017:27017" # specify port forwarding
 
-  express: #name of the second service
+  express: #name of the second service (back)
     build: express-server # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
     depends_on:
-       - "database"
+       - "database" #starts aftr database service
     links:
       - database
 
-  database: # name of the third service
-    image: mongo # specify image to build container from
+  angular: # name of the third service (front)
+    build: angular-client # specify the directory of the Dockerfile
     ports:
-      - "27017:27017" # specify port forwarding
+      - "4200:4200" # specify port forewarding
+    depends_on:
+      - "express" #starts after express service
+    volumes:
+      - ./angular-client:/app # this will enable changes made to the angular app reflect in the container
