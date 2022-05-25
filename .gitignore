@@ -44,4 +44,4 @@ testem.log
 Thumbs.db
 
 #VSCode
-.vscode/
+**.vscode/
