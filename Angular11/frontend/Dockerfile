@@ -2,16 +2,18 @@
 FROM node:16
 
 # Create a directory where our app will be placed
-RUN mkdir -p /app
+#RUN mkdir -p /app
 
 # Change directory so that our commands run inside this new directory
-WORKDIR /app
+#WORKDIR /app
+WORKDIR /frontend/
+ADD . /frontend/
 
 # Copy dependency definitions
-COPY package*.json /app/
+#COPY package*.json /app/
 
 # Install dependencies
-RUN npm install
+RUN npm install -g @angular/cli && npm install
 
 # Get all the code needed to run the app
 COPY . /app/
