@@ -45,3 +45,6 @@ Thumbs.db
 
 #VSCode
 **.vscode/
+
+#database
+Angular11/db/
