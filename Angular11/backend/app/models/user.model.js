@@ -3,12 +3,12 @@ module.exports = mongoose => {
       "user",
       mongoose.Schema(
         {
-          name: String,
           email: String,
+          name: String,
           tutorials: Array
         },
         { timestamps: true }
       )
     );
-    return user;
+    return User;
   };

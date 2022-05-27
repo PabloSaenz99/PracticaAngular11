@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/tutorial.routes")(app);
+require("./app/routes/user.routes")(app);
 // set port, listen for requests
 
 const PORT = process.env.PORT || 3000;  //Changed port from 8080 to 3000 to match de docker config (docker-compose.yml)
