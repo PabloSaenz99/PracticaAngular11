@@ -9,13 +9,16 @@ import { TutorialsListComponent } from './components/tutorials-list/tutorials-li
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTutorialComponent,
     TutorialDetailsComponent,
-    TutorialsListComponent
+    TutorialsListComponent,
+
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

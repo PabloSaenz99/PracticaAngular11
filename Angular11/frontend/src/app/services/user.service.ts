@@ -30,6 +30,6 @@ export class UserService {
     return this.http.delete(baseUrl);
   }
   findByTitle(email: any): Observable<User[]> {
-    return this.http.get<User[]>(`${baseUrl}?title=${title}`);
+    return this.http.get<User[]>(`${baseUrl}?email=${email}`);
   }
 }

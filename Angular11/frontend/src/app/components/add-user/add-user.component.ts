@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Tutorial } from 'src/app/models/tutorial.model';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 @Component({
-  selector: 'app-add-tutorial',
-  templateUrl: './add-tutorial.component.html',
-  styleUrls: ['./add-tutorial.component.css']
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.css']
 })
-export class AddTutorialComponent implements OnInit {
-  tutorial: Tutorial = {
-    title: '',
-    description: '',
-    published: false
+export class AddUserComponent implements OnInit {
+  user: User = {
+    email: '',
+    name: '',
+    tutorials: []
   };
   submitted = false;
-  constructor(private tutorialService: TutorialService) { }
+  constructor(private userService: UserService) { }
   ngOnInit(): void {
   }
-  saveTutorial(): void {
+  saveUser(): void {
     const data = {
-      title: this.tutorial.title,
-      description: this.tutorial.description
+      email: this.user.email,
+      name: this.user.name
     };
-    this.tutorialService.create(data)
+    this.userService.create(data)
       .subscribe(
         response => {
           console.log(response);
@@ -31,12 +31,12 @@ export class AddTutorialComponent implements OnInit {
           console.log(error);
         });
   }
-  newTutorial(): void {
+  newUser(): void {
     this.submitted = false;
-    this.tutorial = {
-      title: '',
-      description: '',
-      published: false
+    this.user = {
+      email: '',
+      name: '',
+      tutorials: []
     };
   }
 }
