@@ -75,5 +75,6 @@ export class SetTutorialUserComponent implements OnInit {
         error => {
           console.log(error);
         });
+    //Maybe add a reference to the user in the tutorial?
   }
 }
