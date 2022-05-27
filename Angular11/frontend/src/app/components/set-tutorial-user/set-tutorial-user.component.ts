@@ -64,10 +64,10 @@ export class SetTutorialUserComponent implements OnInit {
 
   setUserTutorial(): void{
     const data = {
-      userEmail: this.currentUser.email,
-      tutorialName: this.currentTutorial?.title
+      userEmail: this.currentUser?.email,
+      tutorialId: this.currentTutorial?.id
     };
-    this.userService.create(data) //modify
+    this.userService.addTutorial(data.tutorialId)
       .subscribe(
         response => {
           console.log(response);

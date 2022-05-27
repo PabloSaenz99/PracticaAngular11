@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
 import { environment } from './../../environments/environment';
+import { Tutorial } from '../models/tutorial.model';
 
 const baseUrl = environment.url + environment.port + '/api/users'; //'http://localhost:3000/api/users'
 @Injectable({
@@ -31,5 +32,9 @@ export class UserService {
   }
   findByTitle(email: any): Observable<User[]> {
     return this.http.get<User[]>(`${baseUrl}?email=${email}`);
+  }
+
+  addTutorial(tutorialId: any): Observable<any> {
+    return this.http.put(`${baseUrl}/tutorials`, tutorialId);
   }
 }
