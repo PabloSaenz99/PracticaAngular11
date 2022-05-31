@@ -28,10 +28,12 @@ exports.create = (req, res) => {
 };
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    var condition = title ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
-    User.find(condition)
+    //const name = req.query.name;
+    //var condition = email ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
+    console.log("sidus");
+    User.find()
       .then(data => {
+        console.log(data);
         res.send(data);
       })
       .catch(err => {
