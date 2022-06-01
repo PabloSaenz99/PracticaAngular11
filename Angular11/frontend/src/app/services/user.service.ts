@@ -35,11 +35,9 @@ export class UserService {
   }
 
   addTutorial(data: { tutorialId: string, userId: string }): Observable<any> {
-    console.log("user-service " + data.tutorialId + " " + data.userId);
     return this.http.post(`${baseUrl}/set`, data);
   }
-
   getUsersTutorials(): Observable<any> {
-    return this.http.get(`${baseUrl}/tutorials`);
+    return this.http.get(`${baseUrl}/tutoriales-de-usuario`);
   }
 }

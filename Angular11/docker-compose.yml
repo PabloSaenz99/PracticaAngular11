@@ -8,13 +8,17 @@ services:
       - "27017:27017" # specify port forwarding
     volumes:
       - ./db:/data/db
+    logging:
+      driver: none
       
   express: #name of the second service (back)
     build: backend # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
     depends_on:
-       - "database" #starts after database service
+      - "database" #starts after database service
+    volumes:
+      - ./backend:/backend
     links:
       - database
 
@@ -22,7 +26,6 @@ services:
     build: ./frontend # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port forewarding
-      - "49153:49153"
     depends_on:
       - "express" #starts after express service
     volumes:

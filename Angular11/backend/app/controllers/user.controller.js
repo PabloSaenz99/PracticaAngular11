@@ -28,23 +28,22 @@ exports.create = (req, res) => {
 };
 // Retrieve all User from the database.
 exports.findAll = (req, res) => {
-    //const name = req.query.name;
-    //var condition = email ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
-    User.find()
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving users."
-        });
+  console.log("find all");
+  User.find()
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving users."
       });
+    });
 };
 // Find a single User with an id
 exports.findOne = (req, res) => {
     const id = req.params.email;
-    User.findById(id)
+    User.findById({_id: "6295d230cc117347b231959b"})
       .then(data => {
         if (!data)
           res.status(404).send({ message: "Not found user with email " + id });
@@ -100,59 +99,42 @@ exports.delete = (req, res) => {
       });
 };
 
-exports.addTutorial = (req, res) => {
+exports.addTutorial = async (req, res) => {
   if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
-    }
-    console.log(req.body);
-    const tutorialId = req.body.tutorialId;
-    const userId = req.body.userId;
-    console.log("body" + userId);
-    User.findByIdAndUpdate(userId, {$push: {tutorials: tutorialId}})
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update user with id=${userId}. Maybe user was not found!`
-          });
-        } else res.send({ message: "User was updated successfully." });
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error updating user with id=" + userId
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
+  const tutorialId = req.body.tutorialId;
+  const userId = req.body.userId;
+  User.findByIdAndUpdate(userId, {$push: {tutorials: tutorialId}})
+    .then(data => {
+      if (!data) {
+        console.log("body" + userId);
+        res.status(404).send({
+          message: `Cannot update user with id=${userId}. Maybe user was not found!`
         });
-      });
-};
-/*
-// Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
-    User.deleteMany({})
-    .then(data => {
-      res.send({
-        message: `${data.deletedCount} Users were deleted successfully!`
-      });
+      } else res.send({ message: "User was updated successfully." });
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while removing all users."
+        message: "Error updating user with id=" + userId
       });
     });
 };
-*/
-/*
-// Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-    User.find({ published: true })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+
+exports.getUsersTutorials = async (req, res) => {
+  try {
+    var u = await User.find().populate("tutorials");  //Find all the users and populate their tutorials
+    if(!u)
+      res.status(404).send({
+        message: "Error retrieving users and tutorials"
       });
+    else
+      res.send(u);                                      //Send back the result
+  } catch (err) {
+    res.status(500).send({
+      message: "Error retrieving user and tutorials"
     });
+  }
 };
-*/

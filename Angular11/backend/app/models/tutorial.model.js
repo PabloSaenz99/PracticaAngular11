@@ -7,7 +7,7 @@ module.exports = mongoose => {
           description: String,
           published: Boolean
         },
-        { timestamps: true }
+        //{ timestamps: true }
       )
     );
     return Tutorial;

@@ -68,14 +68,10 @@ export class SetTutorialUserComponent implements OnInit {
   }
 
   setUserTutorial(): void{
-
-    console.log(this.currentTutorial, this.currentUser)
-
     const data: { tutorialId: string, userId: string } = {
       tutorialId: this.currentTutorial._id,
       userId: this.currentUser._id
     }
-    console.log(data)
     this.userService.addTutorial(data)
       .subscribe(
         response => {
