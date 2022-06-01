@@ -86,4 +86,15 @@ export class SetTutorialUserComponent implements OnInit {
         });
     //Maybe add a reference to the user in the tutorial?
   }
+
+  getUsersTutorials(): void {
+    this.userService.getUsersTutorials()
+    .subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
+  }
 }

@@ -38,4 +38,8 @@ export class UserService {
     console.log("user-service " + data.tutorialId + " " + data.userId);
     return this.http.post(`${baseUrl}/set`, data);
   }
+
+  getUsersTutorials(): Observable<any> {
+    return this.http.get(`${baseUrl}/tutorials`);
+  }
 }
