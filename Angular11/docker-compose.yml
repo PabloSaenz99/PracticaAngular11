@@ -14,15 +14,16 @@ services:
     ports:
       - "3000:3000" #specify ports forewarding
     depends_on:
-       - "database" #starts aftr database service
+       - "database" #starts after database service
     links:
       - database
 
   angular: # name of the third service (front)
-    build: frontend # specify the directory of the Dockerfile
+    build: ./frontend # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port forewarding
+      - "49153:49153"
     depends_on:
       - "express" #starts after express service
     volumes:
-      - ./frontend:/app # this will enable changes made to the angular app reflect in the container
+      - ./frontend:/frontend # this will enable changes made to the angular app reflect in the container

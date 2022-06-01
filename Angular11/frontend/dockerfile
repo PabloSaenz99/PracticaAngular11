@@ -10,13 +10,15 @@ WORKDIR /frontend/
 ADD . /frontend/
 
 # Copy dependency definitions
-#COPY package*.json /app/
+#COPY package*.json /app
+#COPY package*.json /frontend
 
 # Install dependencies
-RUN npm install -g @angular/cli && npm install
+RUN npm install && npm install -g @angular/cli
 
 # Get all the code needed to run the app
-COPY . /app/
+#COPY . /app
+COPY . /frontend/
 
 # Expose the port the app runs in
 EXPOSE 4200

@@ -8,11 +8,7 @@ import { Tutorial } from 'src/app/models/tutorial.model';
   styleUrls: ['./tutorial-details.component.css']
 })
 export class TutorialDetailsComponent implements OnInit {
-  currentTutorial: Tutorial = {
-    title: '',
-    description: '',
-    published: false
-  };
+  currentTutorial = new Tutorial();
   message = '';
   constructor(
     private tutorialService: TutorialService,

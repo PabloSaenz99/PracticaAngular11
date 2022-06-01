@@ -16,7 +16,7 @@ export class UserService {
     return this.http.get<User[]>(baseUrl);
   }
   get(id: any): Observable<User> {
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.http.get<User>(`${baseUrl}/${id}`);
   }
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
@@ -34,7 +34,8 @@ export class UserService {
     return this.http.get<User[]>(`${baseUrl}?email=${email}`);
   }
 
-  addTutorial(tutorialId: any): Observable<any> {
-    return this.http.put(`${baseUrl}/tutorials`, tutorialId);
+  addTutorial(data: { tutorialId: string, userId: string }): Observable<any> {
+    console.log("user-service " + data.tutorialId + " " + data.userId);
+    return this.http.post(`${baseUrl}/set`, data);
   }
 }

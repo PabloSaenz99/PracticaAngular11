@@ -1,6 +1,7 @@
 <div class="list row">
   <div class="col-md-6">
     <h4>Tutorials List</h4>
+    <p *ngIf="currentTutorial">Current tutorial: {{ currentTutorial?.title }}</p>
     <ul class="list-group">
       <li
         class="list-group-item"
@@ -14,6 +15,7 @@
   </div>
   <div class="col-md-6">
     <h4>Users List</h4>
+    <p *ngIf="currentUser">Current user: {{ currentUser.name }}</p>
     <ul class="list-group">
       <li
         class="list-group-item"
@@ -21,7 +23,7 @@
         [class.active]="i == currentUserIndex"
         (click)="setActiveUser(user, i)"
       >
-        {{ user.email }}
+        {{ user.name }}
       </li>
     </ul>
   </div>

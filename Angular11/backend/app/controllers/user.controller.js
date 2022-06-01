@@ -7,13 +7,13 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "You must fill all the fields!" });
     return;
   }
-  // Create a Tutorial
+  // Create a User
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     tutorials: []
   });
-  // Save Tutorial in the database
+  // Save User in the database
   user
     .save(user)
     .then(data => {
@@ -26,14 +26,12 @@ exports.create = (req, res) => {
       });
     });
 };
-// Retrieve all Tutorials from the database.
+// Retrieve all User from the database.
 exports.findAll = (req, res) => {
     //const name = req.query.name;
     //var condition = email ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
-    console.log("sidus");
     User.find()
       .then(data => {
-        console.log(data);
         res.send(data);
       })
       .catch(err => {
@@ -43,7 +41,7 @@ exports.findAll = (req, res) => {
         });
       });
 };
-// Find a single Tutorial with an id
+// Find a single User with an id
 exports.findOne = (req, res) => {
     const id = req.params.email;
     User.findById(id)
@@ -58,7 +56,7 @@ exports.findOne = (req, res) => {
           .send({ message: "Error retrieving email with id=" + id });
       });
 };
-// Update a Tutorial by the id in the request
+// Update a User by the id in the request
 exports.update = (req, res) => {
     if (!req.body) {
         return res.status(400).send({
@@ -98,6 +96,31 @@ exports.delete = (req, res) => {
       .catch(err => {
         res.status(500).send({
           message: "Could not delete user with email=" + id
+        });
+      });
+};
+
+exports.addTutorial = (req, res) => {
+  if (!req.body) {
+      return res.status(400).send({
+        message: "Data to update can not be empty!"
+      });
+    }
+    console.log(req.body);
+    const tutorialId = req.body.tutorialId;
+    const userId = req.body.userId;
+    console.log("body" + userId);
+    User.findByIdAndUpdate(userId, {$push: {tutorials: tutorialId}})
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update user with id=${userId}. Maybe user was not found!`
+          });
+        } else res.send({ message: "User was updated successfully." });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating user with id=" + userId
         });
       });
 };

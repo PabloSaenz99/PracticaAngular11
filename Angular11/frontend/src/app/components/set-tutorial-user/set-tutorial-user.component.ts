@@ -12,18 +12,22 @@ import { UserService } from 'src/app/services/user.service';
 
 export class SetTutorialUserComponent implements OnInit {
   tutorials?: Tutorial[];
-  currentTutorial?: Tutorial;
+  currentTutorial: Tutorial;
   currentTutorialIndex = -1;
   title = '';
 
   users?: User[];
-  currentUser?: User;
+  currentUser: User;
   currentUserIndex = -1;
   email = '';
 
   constructor(
     private tutorialService: TutorialService,
-    private userService: UserService) { }
+    private userService: UserService) { 
+    
+    this.currentUser = new User();
+    this.currentTutorial = new Tutorial();
+  }
 
   ngOnInit(): void {
     this.retrieveTutorials();
@@ -64,11 +68,15 @@ export class SetTutorialUserComponent implements OnInit {
   }
 
   setUserTutorial(): void{
-    const data = {
-      userEmail: this.currentUser?.email,
-      tutorialId: this.currentTutorial?.id
-    };
-    this.userService.addTutorial(data.tutorialId)
+
+    console.log(this.currentTutorial, this.currentUser)
+
+    const data: { tutorialId: string, userId: string } = {
+      tutorialId: this.currentTutorial._id,
+      userId: this.currentUser._id
+    }
+    console.log(data)
+    this.userService.addTutorial(data)
       .subscribe(
         response => {
           console.log(response);

@@ -11,5 +11,8 @@ module.exports = app => {
     router.put("/:id", users.update);
     // Delete a user with id
     router.delete("/:id", users.delete);
+    // Add a tutorial to an existing user
+    router.post("/set", users.addTutorial);
+    
     app.use('/api/users', router);
   };

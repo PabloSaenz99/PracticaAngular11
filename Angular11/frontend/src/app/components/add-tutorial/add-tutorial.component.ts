@@ -7,11 +7,7 @@ import { TutorialService } from 'src/app/services/tutorial.service';
   styleUrls: ['./add-tutorial.component.css']
 })
 export class AddTutorialComponent implements OnInit {
-  tutorial: Tutorial = {
-    title: '',
-    description: '',
-    published: false
-  };
+  tutorial = new Tutorial()
   submitted = false;
   constructor(private tutorialService: TutorialService) { }
   ngOnInit(): void {
@@ -33,10 +29,6 @@ export class AddTutorialComponent implements OnInit {
   }
   newTutorial(): void {
     this.submitted = false;
-    this.tutorial = {
-      title: '',
-      description: '',
-      published: false
-    };
+    this.tutorial = new Tutorial();
   }
 }

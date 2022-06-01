@@ -7,11 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
-  user: User = {
-    email: '',
-    name: '',
-    tutorials: []
-  };
+  user = new User();
   submitted = false;
   constructor(private userService: UserService) { }
   ngOnInit(): void {
@@ -33,10 +29,6 @@ export class AddUserComponent implements OnInit {
   }
   newUser(): void {
     this.submitted = false;
-    this.user = {
-      email: '',
-      name: '',
-      tutorials: []
-    };
+    this.user = new User();
   }
 }
