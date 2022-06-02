@@ -7,11 +7,14 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "You must fill all the fields!" });
     return;
   }
+  //Calculate years between now and birthday
+  let years = Math.abs(new Date(Date.now() - new Date(req.body.birthday)).getUTCFullYear() - 1970);
   // Create a User
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     birthday: req.body.birthday,
+    ageAtCreation: years,
     tutorials: []
   });
   // Save User in the database

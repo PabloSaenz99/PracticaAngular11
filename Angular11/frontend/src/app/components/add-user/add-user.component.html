@@ -26,9 +26,11 @@
           <label>Birthday</label>
           <input type="date" 
             id="date"
-            anme="date"
-            value="2018-07-22"
-            min="2018-01-01"
+            name="date"
+            value="1970-07-22"
+            min="1900-01-01"
+            max = "{{this.today}}"
+            required
             [(ngModel)]='user.birthday'>
         </div>
         <button (click)="saveUser()" class="btn btn-success">Submit</button>

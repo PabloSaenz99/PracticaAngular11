@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
+  today = new Date().toISOString().slice(0, 10);  
   user = new User();
   submitted = false;
   constructor(private userService: UserService) { }
