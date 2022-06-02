@@ -11,6 +11,7 @@ exports.create = (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
+    birthday: req.body.birthday,
     tutorials: []
   });
   // Save User in the database
@@ -100,6 +101,24 @@ exports.delete = (req, res) => {
 };
 
 exports.addTutorial = async (req, res) => {
+  /*
+  try {
+    const tutorialId = req.body.tutorialId;
+    const userId = req.body.userId;
+    var u = await User.findByIdAndUpdate(userId, {$push: {tutorials: tutorialId}})
+    if (!data) {
+      res.status(404).send({
+        message: `Cannot update user with id=${userId}. Maybe user was not found!`
+      });
+    } else
+      res.send({ message: "User was updated successfully." });
+  } catch (err) {
+    res.status(500).send({
+      message: "Error updating user with id=" + userId
+    });
+  }
+  */
+
   if (!req.body) {
     return res.status(400).send({
       message: "Data to update can not be empty!"

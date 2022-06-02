@@ -15,7 +15,8 @@ export class AddUserComponent implements OnInit {
   saveUser(): void {
     const data = {
       email: this.user.email,
-      name: this.user.name
+      name: this.user.name,
+      birthday: this.user.birthday
     };
     this.userService.create(data)
       .subscribe(
