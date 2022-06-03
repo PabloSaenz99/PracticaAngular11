@@ -20,3 +20,7 @@ docker system prune -a
 ```bash
 docker-compose up --build
 ```
+
+##testing websites:
+https://shashankvivek-7.medium.com/testing-basic-html-elements-using-karma-jasmine-in-angular-fd5e4ac62d78
+https://blog.logrocket.com/angular-unit-testing-tutorial-examples/
