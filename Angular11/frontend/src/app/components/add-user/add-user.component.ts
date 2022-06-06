@@ -13,6 +13,7 @@ export class AddUserComponent implements OnInit {
   constructor(private userService: UserService) { }
   ngOnInit(): void {
   }
+  
   saveUser(): void {
     const data = {
       email: this.user.email,
