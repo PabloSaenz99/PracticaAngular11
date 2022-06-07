@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Node.js Restful CRUD API with Node.js, Express and MongoDB",
-  "type": "module",
   "scripts": {
     "start": "nodemon -L server.js",
-    "test": "ava"
+    "test": "ava",
+    "watch": "ava --watch"
   },
   "keywords": [
     "nodejs",
@@ -22,11 +22,23 @@
     "nodemon": "^2.0.16"
   },
   "devDependencies": {
-    "ava": "^4.3.0"
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/register": "^7.17.7",
+    "ava": "^4.3.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "mongodb-memory-server": "^8.6.0",
+    "supertest": "^6.2.3"
   },
   "ava": {
-		"files": [
-			"app/tests/*"
-		]
+    "files": [
+      "app/tests/*"
+    ],
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ]
   }
 }
