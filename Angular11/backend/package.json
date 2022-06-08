@@ -34,7 +34,7 @@
   },
   "ava": {
     "files": [
-      "app/tests/*"
+      "tests/*"
     ],
     "require": [
       "babel-register",

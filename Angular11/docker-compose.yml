@@ -15,7 +15,6 @@ services:
     build: backend # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
-      - "7500:7500"
     depends_on:
       - "database" #starts after database service
     volumes:

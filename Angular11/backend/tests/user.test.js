@@ -1,10 +1,10 @@
 const test = require("ava");
 
 const supertest = require("supertest");
-const { app, server } = require('../../server');
+const { app, server } = require('../server');
 const request = supertest(app);
 
-const User = require("../controllers/user.controller");
+const User = require("../app/controllers/user.controller");
 const {connectDB, disconnectDB} = require('./configure-test');
 
 //test.only() runs only this test
@@ -47,6 +47,7 @@ test.serial("Create new user and find it", async t => {
 });
 
 test.serial("Get all users", async t => {
+	
 	result = await request.get("/api/users/").send();
 	t.is(result.status, 200);
 	//t.log(result.text);
