@@ -32,7 +32,6 @@ exports.create = (req, res) => {
 };
 // Retrieve all User from the database.
 exports.findAll = (req, res) => {
-  console.log("find all");
   User.find()
     .then(data => {
       res.send(data);
@@ -46,12 +45,14 @@ exports.findAll = (req, res) => {
 };
 // Find a single User with an id
 exports.findOne = (req, res) => {
-    const id = req.params.email;
-    //User.findById({_id: "req.params._id"})
+    const id = req.params.id;
+    console.log(id);
+    //User.findById(id)
+    //User.findOne({email: id})
     User.findOne({email: id})
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found user with email " + id });
+          res.status(404).send({ message: "Not found user with id " + id });
         else res.send(data);
       })
       .catch(err => {

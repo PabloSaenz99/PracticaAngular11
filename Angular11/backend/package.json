@@ -4,7 +4,7 @@
   "description": "Node.js Restful CRUD API with Node.js, Express and MongoDB",
   "scripts": {
     "start": "nodemon -L server.js",
-    "test": "ava",
+    "test": "PORT=7500 TEST=test ava",
     "watch": "ava --watch"
   },
   "keywords": [

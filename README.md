@@ -21,6 +21,16 @@ docker system prune -a
 docker-compose up --build
 ```
 
-##testing websites:
+## Testing frontend:
 https://shashankvivek-7.medium.com/testing-basic-html-elements-using-karma-jasmine-in-angular-fd5e4ac62d78
 https://blog.logrocket.com/angular-unit-testing-tutorial-examples/
+
+## Testing backend:
+Basic instructions and configuration:
+https://ducmanhphan.github.io/2018-12-17-ava-test-framework/
+Promises and imports:
+https://dimitr.im/nodejs-ava
+
+Express + mongoose:
+https://github.com/avajs/ava/blob/main/docs/recipes/endpoint-testing-with-mongoose.md
+https://github.com/zellwk/ava/blob/8b7ccba1d80258b272ae7cae6ba4967cd1c13030/docs/recipes/endpoint-testing-with-mongoose.md
