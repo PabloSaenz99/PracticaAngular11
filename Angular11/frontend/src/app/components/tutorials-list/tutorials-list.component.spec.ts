@@ -25,4 +25,13 @@ describe('TutorialsListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should list all tutorials', () => {
+    expect(component.tutorials).toBeTruthy();
+  });
+
+  it('should set first tutorial', () => {
+    component.setActiveTutorial(component.tutorials![0] , 0);
+    expect(component.currentIndex).toEqual(0);
+  });
 });

@@ -34,7 +34,7 @@ test.skip("Test basic get", async t => {
 });
 
 //Serial
-test.serial("Create new user and find it", async t => {
+test.serial("Create new user", async t => {
 
 	const user1 = {_id:1, email: "email1", name: "name1", birthday: new Date(), tutorials: []};
 	result = await request.post("/api/users/").send(user1);
@@ -53,11 +53,14 @@ test.serial("Get all users", async t => {
 	//t.log(result.text);
 });
 
-test.serial("Get created user", async t => {
+test.serial("Get created user and add a tutorial to it", async t => {
 	const a = {params:{email: "email"}};
 	result = await request.get("/api/users/email1").send(a);
-	
 	t.is(result.body.name, 'name1');
+
+	const b = {tutorialId: "213213", userId: result.body._id};
+	result = await request.post("/api/users/set/").send(b);
+	t.is(result.body.message, 'User was updated successfully.');
 });
 
 //test.afterEach.always(() => User.delete());

@@ -25,4 +25,10 @@ describe('AddTutorialComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Should create tutorial', () => {
+    component.newTutorial();
+
+    expect(component.tutorial).toBeTruthy()
+  });
 });
