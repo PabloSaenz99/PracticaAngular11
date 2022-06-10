@@ -26,6 +26,7 @@ services:
     build: ./frontend # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port forewarding
+      - "9876:9876"
     depends_on:
       - "express" #starts after express service
     volumes:

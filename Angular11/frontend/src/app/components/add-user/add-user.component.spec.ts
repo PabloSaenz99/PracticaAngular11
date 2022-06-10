@@ -10,7 +10,7 @@ import { By } from '@angular/platform-browser';
 
 import { AddUserComponent } from './add-user.component';
 
-fdescribe('AddUserComponent', () => {
+describe('AddUserComponent', () => {
   let component: AddUserComponent;
   let fixture: ComponentFixture<AddUserComponent>;
 
@@ -36,7 +36,7 @@ fdescribe('AddUserComponent', () => {
 
   it("should have todays date", () => {
     fixture.detectChanges();
-    expect(component.today).toContain("2022-06-06");
+    expect(component.today).toContain("2022-06-10");
   });
 
   it("should have not empty fields", () => {            //Check there are not empty fields when the button is clicked
@@ -48,6 +48,7 @@ fdescribe('AddUserComponent', () => {
     fixture.debugElement
       .query(By.css(".btn-success"))                    //Search element by css
       .triggerEventHandler('click', null);              //Click the button
+    
     expect(component.user.email).not.toEqual("");
     expect(component.user.name).not.toEqual("");
     /*
