@@ -32,7 +32,7 @@ describe('TutorialsListComponent', () => {
     httpcontroller.verify();
   });
 
-  it("serach by title", () =>{
+  it("search by title", () =>{
     const tutorial = [new Tutorial()];
     //tutorial = { "_id": {    "$oid": "6295d1f4cc117347b2319592"  },  "title": "Tutorial",  "description": "Tutorial 2 descripcion",  "published": false,  "__v": 0};
     servicio.findByTitle("Tutorial").subscribe(
