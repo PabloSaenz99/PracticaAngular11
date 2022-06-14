@@ -15,7 +15,7 @@ describe('TutorialsListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule], 
       providers: [TutorialsListComponent, TutorialService],
-      declarations: [ TutorialsListComponent ]
+      declarations: [TutorialsListComponent]
     })
     .compileComponents();
   });
@@ -28,13 +28,17 @@ describe('TutorialsListComponent', () => {
     fixture.detectChanges();
   });
 
-  afterEach(() => {
+    afterEach(() => {
     httpcontroller.verify();
   });
 
-  it("search by title", () =>{
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it("Should GET by title", () =>{
     const tutorial = [new Tutorial()];
-    //tutorial = { "_id": {    "$oid": "6295d1f4cc117347b2319592"  },  "title": "Tutorial",  "description": "Tutorial 2 descripcion",  "published": false,  "__v": 0};
+    //tutorial = { "_id": {    "$_id": "6295d1f4cc117347b2319592"  },  "title": "Tutorial",  "description": "Tutorial 2 descripcion",  "published": false,  "__v": 0};
     servicio.findByTitle("Tutorial").subscribe(
       data => {
         console.log(data);
@@ -43,23 +47,29 @@ describe('TutorialsListComponent', () => {
       error => {
         console.log(error);
       });
-      console.log();
-      
+    
     const req = httpcontroller.expectOne(`${servicio.baseUrl}?title=Tutorial`);
-
+    
     expect(req.request.method).toEqual("GET");
     req.flush(tutorial);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should list all tutorials', () => {
-    //component.retrieveTutorials();
-    console.log("dsksadksad");
-    servicio.testear();
+  it('should GET all tutorials', () => {
+    const tutorial = [new Tutorial()];
+    //tutorial = { "_id": {    "$oid": "6295d1f4cc117347b2319592"  },  "title": "Tutorial",  "description": "Tutorial 2 descripcion",  "published": false,  "__v": 0};
+    servicio.getAll().subscribe(
+      data => {
+        console.log(data);
+        expect(data).toBe(tutorial);
+      },
+      error => {
+        console.log(error);
+      });
+          
+    const req = httpcontroller.expectOne(servicio.baseUrl);
     
+    expect(req.request.method).toEqual("GET");
+    req.flush(tutorial);
     expect(component.tutorials).toBeDefined();
     expect(component.tutorials?.length).not.toEqual(0);
   });
@@ -69,6 +79,5 @@ describe('TutorialsListComponent', () => {
     component.setActiveTutorial(component.tutorials![0] , 0);
     expect(component.currentIndex).toEqual(0);
   });*/
-
   
 });

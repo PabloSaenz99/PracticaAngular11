@@ -24,10 +24,15 @@ describe('AddTutorialComponent', () => {
     httpcontroller = TestBed.get(HttpTestingController);
     fixture = TestBed.createComponent(AddTutorialComponent);
     component = fixture.componentInstance;
+    servicio = TestBed.inject(TutorialService);
     fixture.detectChanges();
   });
 
-  it("add new tutoriald", () =>{
+  afterEach(() => {
+    httpcontroller.verify();
+  });
+
+  it("Should POST new tutorial", () =>{
     const tutorial = new Tutorial();
     //tutorial = { "_id": {    "$oid": "6295d1f4cc117347b2319592"  },  "title": "Tutorial",  "description": "Tutorial 2 descripcion",  "published": false,  "__v": 0};
     servicio.create(tutorial).subscribe(
@@ -50,9 +55,8 @@ describe('AddTutorialComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should create tutorial', () => {
+  it('Should create new tutorial', () => {
     component.newTutorial();
-
     expect(component.tutorial).toBeTruthy()
   });
 });

@@ -15,27 +15,26 @@ export class TutorialService {
   getAll(): Observable<Tutorial[]> {
     return this.http.get<Tutorial[]>(this.baseUrl);
   }
-  get(id: any): Observable<Tutorial> {
-    return this.http.get<Tutorial>(`${this.baseUrl}/${id}`);
+  get(id: string): Observable<Tutorial> {    
+    return this.http.get<Tutorial>(`${this.baseUrl}/id/${id}`);
   }
   create(data: any): Observable<any> {
     return this.http.post(this.baseUrl, data);
   }
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, data);
+    return this.http.put(`${this.baseUrl}/id/${id}`, data);
   }
   delete(id: any): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/id/${id}`);
   }
   deleteAll(): Observable<any> {
     return this.http.delete(this.baseUrl);
   }
   findByTitle(title: any): Observable<Tutorial[]> {
+    console.log("---------------------------------eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    
+    console.log(`${this.baseUrl}?title=${title}`);
+    
     return this.http.get<Tutorial[]>(`${this.baseUrl}?title=${title}`);
-  }
-
-  testear(): String {
-    console.log("test1");
-    return "test2";
   }
 }

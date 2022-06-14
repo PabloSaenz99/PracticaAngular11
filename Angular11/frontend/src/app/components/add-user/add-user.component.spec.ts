@@ -36,7 +36,7 @@ describe('AddUserComponent', () => {
 
   it("should have todays date", () => {
     fixture.detectChanges();
-    expect(component.today).toContain("2022-06-10");
+    expect(component.today).toContain("2022-06-14");
   });
 
   it("should have not empty fields", () => {            //Check there are not empty fields when the button is clicked
