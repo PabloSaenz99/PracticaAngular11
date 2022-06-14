@@ -13,7 +13,7 @@ export class TutorialService {
 
   constructor(private http: HttpClient) { }
   getAll(): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(this.baseUrl);
+    return this.http.get<Tutorial[]>(`${this.baseUrl}`);
   }
   get(id: string): Observable<Tutorial> {    
     return this.http.get<Tutorial>(`${this.baseUrl}/id/${id}`);
@@ -30,11 +30,7 @@ export class TutorialService {
   deleteAll(): Observable<any> {
     return this.http.delete(this.baseUrl);
   }
-  findByTitle(title: any): Observable<Tutorial[]> {
-    console.log("---------------------------------eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-    
-    console.log(`${this.baseUrl}?title=${title}`);
-    
+  findByTitle(title: any): Observable<Tutorial[]> {    
     return this.http.get<Tutorial[]>(`${this.baseUrl}?title=${title}`);
   }
 }

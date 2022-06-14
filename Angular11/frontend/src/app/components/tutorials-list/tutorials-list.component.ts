@@ -6,15 +6,12 @@ import { TutorialService } from 'src/app/services/tutorial.service';
   templateUrl: './tutorials-list.component.html',
   styleUrls: ['./tutorials-list.component.css']
 })
-export class TutorialsListComponent implements OnInit {
+export class TutorialsListComponent {
   tutorials?: Tutorial[];
   currentTutorial?: Tutorial;
   currentIndex = -1;
   title = '';
   constructor(private tutorialService: TutorialService) { }
-  ngOnInit(): void {
-    this.retrieveTutorials();
-  }
   retrieveTutorials(): void {
     this.tutorialService.getAll()
       .subscribe(
@@ -25,7 +22,6 @@ export class TutorialsListComponent implements OnInit {
         error => {
           console.log(error);
         });
-        
   }
   refreshList(): void {
     this.retrieveTutorials();

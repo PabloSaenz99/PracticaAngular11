@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 //import { normalize } from 'path';
 //https://blog.logrocket.com/angular-unit-testing-tutorial-examples/
@@ -17,7 +17,7 @@ describe('AddUserComponent', () => {
   //Executed before each individual test
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], 
+      imports: [HttpClientTestingModule, FormsModule], 
       providers: [AddUserComponent],
       declarations: [ AddUserComponent ]
     })

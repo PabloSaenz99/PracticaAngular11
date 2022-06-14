@@ -2,6 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Tutorial } from 'src/app/models/tutorial.model';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { FormsModule } from '@angular/forms';
 
 import { AddTutorialComponent } from './add-tutorial.component';
 
@@ -13,9 +14,9 @@ describe('AddTutorialComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], 
+      imports: [HttpClientTestingModule, FormsModule], 
       providers: [AddTutorialComponent, TutorialService],
-      declarations: [ AddTutorialComponent ]
+      declarations: [AddTutorialComponent]
     })
     .compileComponents();
   });
@@ -34,7 +35,6 @@ describe('AddTutorialComponent', () => {
 
   it("Should POST new tutorial", () =>{
     const tutorial = new Tutorial();
-    //tutorial = { "_id": {    "$oid": "6295d1f4cc117347b2319592"  },  "title": "Tutorial",  "description": "Tutorial 2 descripcion",  "published": false,  "__v": 0};
     servicio.create(tutorial).subscribe(
       data => {
         console.log(data);
@@ -43,7 +43,6 @@ describe('AddTutorialComponent', () => {
       error => {
         console.log(error);
       });
-      console.log();
       
     const req = httpcontroller.expectOne(`${servicio.baseUrl}`);
 
