@@ -64,21 +64,15 @@ fdescribe('TutorialsListComponent', () => {
       error => {
         console.log(error);
       });
-    console.log("--------------------------------------------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    const req = httpcontroller.expectOne(`${servicio.baseUrl}`);
-    console.log(req.request.url);
-    console.log("--------------------------------------------------------------------wwwwwwwwwwwwwwwwwwwww");
-    expect(1).toBe(1)
     
-    
+    const req = httpcontroller.expectOne(`${servicio.baseUrl}`);    
     expect(req.request.method).toEqual("GET");
     req.flush(tutorial);
   });
 
-  /*
   it('should set first tutorial', () => {
+    component.refreshList();
     component.setActiveTutorial(component.tutorials![0] , 0);
     expect(component.currentIndex).toEqual(0);
-  });*/
-  
+  });
 });

@@ -14,8 +14,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require("./app/routes/tutorial.routes")(app);
-require("./app/routes/user.routes")(app);
+require("./src/routes/tutorial.routes")(app);
+require("./src/routes/user.routes")(app);
 // set port, listen for requests
 
 const PORT = process.env.PORT || 3000;  //Changed port from 8080 to 3000 to match de docker config (docker-compose.yml)
@@ -26,7 +26,7 @@ server = app.listen(PORT, () => {
 
 if(process.env.TEST !== "test") {
   //Put here environment variable
-  const db = require("./app/models");
+  const db = require("./src/models");
   db.mongoose
     .connect(db.url, {
       useNewUrlParser: true,

@@ -15,22 +15,22 @@ export class UserService {
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(baseUrl);
   }
-  get(id: any): Observable<User> {
+  get(id: string): Observable<User> {
     return this.http.get<User>(`${baseUrl}/${id}`);
   }
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }
-  update(id: any, data: any): Observable<any> {
+  update(id: string, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
-  delete(id: any): Observable<any> {
+  delete(id: string): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
   deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
   }
-  findByTitle(email: any): Observable<User[]> {
+  findByTitle(email: string): Observable<User[]> {
     return this.http.get<User[]>(`${baseUrl}?email=${email}`);
   }
 
