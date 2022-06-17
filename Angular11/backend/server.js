@@ -14,8 +14,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require("./src/routes/tutorial.routes")(app);
-require("./src/routes/user.routes")(app);
+//require("./src/routes/tutorial.routes")(app);
+app.use("/", require("./src/routes/routes"));
 // set port, listen for requests
 
 const PORT = process.env.PORT || 3000;  //Changed port from 8080 to 3000 to match de docker config (docker-compose.yml)
