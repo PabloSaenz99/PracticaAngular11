@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Node.js Restful CRUD API with Node.js, Express and MongoDB",
   "scripts": {
-    "start": "nodemon -L server.js",
+    "start": "nodemon -L index.js",
     "test": "PORT=7500 TEST=test ava",
     "watch": "ava --watch"
   },
@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.3",
     "nodemon": "^2.0.16"
