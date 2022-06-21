@@ -1,118 +1,58 @@
 const userService = require("../services/user.service");
 
 // Create and Save a new User
-exports.create = async (req, res) => {
+exports.create = async (req, res, next) => {
   try {
-    var data = await userService.createUser(req.body)
-    if (data !== null) {
-      res.send(data);
-    }
-    else {
-      res.status(400).send({ message: "You must fill all the fields!" });
-    }
+    res.send(await userService.createUser(req.body));
   } catch (err) {
-    res.status(500).send({
-      message:
-        err.message || "Some error occurred while creating the User."
-    });
+    next(err);
   };
 };
 // Retrieve all User from the database.
-exports.findAll = async (req, res) => {
+exports.findAll = async (req, res, next) => {
   try {
     res.send(await userService.findAllUsers());
   } catch (err) {
-    res.status(500).send({
-      message:
-        err.message || "Some error occurred while retrieving users."
-    });
+    next(err);
   }
 };
 // Find a single User with an id
-exports.findOne = async (req, res) => {
+exports.findOne = async (req, res, next) => {
   try {
-    var data = await userService.findOneUser(req.params);
-    if (data !== null) {
-      res.send(data);
-    }
-    else {
-      res.status(404).send({ message: "Not found user with id " + id });
-    }
-  }
-  catch (err) {
-    res.status(500).send({ message: "Error retrieving email with id=" + id });
+    res.send(await userService.findOneUser(req.params));
+  } catch (err) {
+    next(err);
   };
 };
 // Update a User by the id in the request
-exports.update = async (req, res) => {
-  if (!req.body) {
-    return res.status(400).send({
-      message: "Data to update can not be empty!"
-    });
-  }
+exports.update = async (req, res, next) => {
   try {
-    var data = userService.updateUser(req);
-    if (data)
-      res.send(data);
-    else
-      res.status(404).send({
-        message: `Cannot update user with id=${id}. Maybe user was not found!`
-      });
+    res.send(userService.updateUser(req));
   } catch (err) {
-    res.status(500).send({
-      message: "Error updating user with id=" + id
-    });
+    next(err);
   };
 };
 // Delete a Tutorial with the specified id in the request
-exports.delete = async (req, res) => {
+exports.delete = async (req, res, next) => {
   try {
-    var data = await userService.deleteUser(req.params);
-    if (data != null) {
-      res.send(data);
-    }
-    else {
-      res.status(404).send({
-        message: `Cannot delete user with id=${id}. Maybe user was not found!`
-      });
-    }
+    res.send(await userService.deleteUser(req.params));
   } catch (err) {
-    res.status(500).send({
-      message: "Could not delete user with email=" + id
-    });
+    next(err);
   };
 };
 
-exports.addTutorial = async (req, res) => {
+exports.addTutorial = async (req, res, next) => {
   try {
-    var data = await userService.addTutorialToUser(req.body);
-    if (data !== null) {
-      res.send(data);
-    } else {
-      res.status(404).send({
-        message: `Cannot update user with id=${userId}. Maybe user was not found!`
-      });
-    }
+    res.send(await userService.addTutorialToUser(req.body));
   } catch (err) {
-    res.status(500).send({
-      message: "Error updating user with id=" + userId
-    });
+    next(err);
   }
 };
 
-exports.getUsersTutorials = async (req, res) => {
+exports.getUsersTutorials = async (req, res, next) => {
   try {
-    var data = await userService.getUsersTutorials();
-    if (data != null) {
-      res.send(data);
-    } else {
-      res.status(404).send({
-        message: "Error retrieving users and tutorials"
-      });
-    }
+    res.send(await userService.getUsersTutorials());
   } catch (err) {
-    res.status(500).send({
-      message: "Error retrieving user and tutorials"
-    });
+    next(err);
   }
 };
