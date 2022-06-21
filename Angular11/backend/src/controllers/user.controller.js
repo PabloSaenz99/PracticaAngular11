@@ -1,42 +1,28 @@
+const userService = require("../services/user.service");
+
 const db = require("../config/db.config");
 const User = db.users;
 // Create and Save a new User
 exports.create = async (req, res) => {
   try {
-    // Validate request
-    if (!req.body.name || !req.body.email) {
-      res.status(400).send({ message: "You must fill all the fields!" });
-      return;
-    }
-    //Calculate years between now and birthday
-    let years = Math.abs(new Date(Date.now() - new Date(req.body.birthday)).getUTCFullYear() - 1970);
-    // Create a User
-    const user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      birthday: req.body.birthday,
-      ageAtCreation: years,
-      tutorials: []
-    });
-    // Save User in the database
-    var data = await user.save(user);
-    if(data) {
+    var data = await userService.createUser(req.body)
+    if(data !== null) {
       res.send(data);
     }
+    else {
+      res.status(400).send({ message: "You must fill all the fields!" });
+    }
   } catch(err) {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the User."
-      });
-    };
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the User."
+    });
+  };
 };
 // Retrieve all User from the database.
 exports.findAll = async (req, res) => {
   try {
-    var data = await User.find();
-    if(data){
-      res.send(data);
-    }
+    res.send(await userService.findAllUsers());
   } catch (err) {
     res.status(500).send({
       message:
@@ -47,10 +33,8 @@ exports.findAll = async (req, res) => {
 // Find a single User with an id
 exports.findOne = async (req, res) => {
   try {
-    const id = req.params.id;
-    console.log(id);
-    var data = await User.findOne({email: id});
-    if(data){
+    var data = await userService.findOneUser(req.params);
+    if(data !== null){
       res.send(data);
     }
     else{
@@ -58,32 +42,30 @@ exports.findOne = async (req, res) => {
     }
   }
   catch(err) {
-    res
-      .status(500)
-      .send({ message: "Error retrieving email with id=" + id });
+    res.status(500).send({ message: "Error retrieving email with id=" + id });
   };
 };
 // Update a User by the id in the request
 exports.update = (req, res) => {
-    if (!req.body) {
-        return res.status(400).send({
-          message: "Data to update can not be empty!"
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
+  const id = req.params.id;
+  User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update user with id=${id}. Maybe user was not found!`
         });
-      }
-      const id = req.params.id;
-      User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-        .then(data => {
-          if (!data) {
-            res.status(404).send({
-              message: `Cannot update user with id=${id}. Maybe user was not found!`
-            });
-          } else res.send({ message: "User was updated successfully." });
-        })
-        .catch(err => {
-          res.status(500).send({
-            message: "Error updating user with id=" + id
-          });
-        });
+      } else res.send({ message: "User was updated successfully." });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating user with id=" + id
+      });
+    });
 };
 // Delete a Tutorial with the specified id in the request
 exports.delete = async (req, res) => {
@@ -109,11 +91,9 @@ exports.delete = async (req, res) => {
 
 exports.addTutorial = async (req, res) => {
   try {
-    const tutorialId = req.body.tutorialId;
-    const userId = req.body.userId;
-    var data = await User.findByIdAndUpdate(userId, {$push: {tutorials: tutorialId}})
-    if (data) {
-      res.send({ message: "User was updated successfully." });
+    var data = await userService.addTutorialToUser(req.body);
+    if (data !== null) {
+      res.send(data);
     } else {
       res.status(404).send({
         message: `Cannot update user with id=${userId}. Maybe user was not found!`
@@ -128,8 +108,8 @@ exports.addTutorial = async (req, res) => {
 
 exports.getUsersTutorials = async (req, res) => {
   try {
-    var data = await User.find().populate("tutorials");  //Find all the users and populate their tutorials
-    if(data) {
+    var data = await userService.getUsersTutorials();
+    if(data != null) {
       res.send(data);  
     } else {
       res.status(404).send({

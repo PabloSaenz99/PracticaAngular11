@@ -1,36 +1,24 @@
-const db = require("../config/db.config");
-const Tutorial = db.tutorials;
+const tutorialService = require("../services/tutorial.service");
+
 // Create and Save a new Tutorial
 exports.create = async (req, res) => {
-  // Validate request
-  if (!req.body.title) {
-    res.status(400).send({ message: "Content can not be empty!" });
-    return;
-  }
-  try {
-  // Create a Tutorial
-    const tutorial = new Tutorial({
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
-    });
-    // Save Tutorial in the database
-    var data = await tutorial.save(tutorial)
-    res.send(data);
-  } catch(err) {
+  try{
+    var d = await tutorialService.createTutorial(req.body);
+    if(d !== null)
+      res.send(d);
+    else
+      res.status(400).send({ message: "Content can not be empty!" });
+  } catch (err) {
     res.status(500).send({
       message:
         err.message || "Some error occurred while creating the Tutorial."
     });
-  };
+  }
 };
 // Retrieve all Tutorials from the database.
 exports.findAll = async (req, res) => {
   try {
-    const title = req.query.title;
-    var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
-    var data = await Tutorial.find(condition);
-    res.send(data);
+    res.send(await tutorialService.findAllTutorials(req.query));
   } catch(err) {
     res.status(500).send({
       message:
@@ -41,12 +29,11 @@ exports.findAll = async (req, res) => {
 // Find a single Tutorial with an id
 exports.findOne = async (req, res) => {
   try {
-    const id = req.params.id;
-    var data = await Tutorial.findById(id);
-    if (!data)
-      res.status(404).send({ message: "Not found Tutorial with id " + id });
-    else
+    var data = await tutorialService.findOneTutorial(req.body);
+    if (data !== null)
       res.send(data);
+    else
+      res.status(404).send({ message: "Not found Tutorial with id " + id });
   } catch(err) {
     res
       .status(500)
@@ -61,8 +48,7 @@ exports.update = async (req, res) => {
     });
   }
   try {
-  const id = req.params.id;
-  var data = await Tutorial.findByIdAndUpdate(id, req.body, { useFindAndModify: false });
+  var data = await tutorialService.updateTutorial(req);
     if (!data) {
       res.status(404).send({
         message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
@@ -77,12 +63,9 @@ exports.update = async (req, res) => {
 // Delete a Tutorial with the specified id in the request
 exports.delete = async (req, res) => {
   try {
-    const id = req.params.id;
-    var data = await Tutorial.findByIdAndRemove(id);
-    if(data) {
-      res.send({
-        message: "Tutorial was deleted successfully!"
-      });
+    var data = await tutorialService.deleteTutorial(req);
+    if(data !== null) {
+      res.send(data);
     }
     else{
       res.status(404).send({
@@ -98,10 +81,7 @@ exports.delete = async (req, res) => {
 // Delete all Tutorials from the database.
 exports.deleteAll = async (req, res) => {
   try {
-    var data = await Tutorial.deleteMany({});
-    res.send({
-      message: `${data.deletedCount} Tutorials were deleted successfully!`
-    });
+    res.send(await Tutorial.deleteMany({}));
   } catch(err) {
     res.status(500).send({
       message:
@@ -112,8 +92,7 @@ exports.deleteAll = async (req, res) => {
 // Find all published Tutorials
 exports.findAllPublished = async (req, res) => {
   try {
-    var data = await Tutorial.find({ published: true });
-    res.send(data);
+    res.send(await tutorialService.findAllPublished());
   } catch(err) {
     res.status(500).send({
       message:
