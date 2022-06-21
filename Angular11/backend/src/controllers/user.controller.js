@@ -46,36 +46,32 @@ exports.findOne = async (req, res) => {
   };
 };
 // Update a User by the id in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   if (!req.body) {
     return res.status(400).send({
       message: "Data to update can not be empty!"
     });
   }
-  const id = req.params.id;
-  User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then(data => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update user with id=${id}. Maybe user was not found!`
-        });
-      } else res.send({ message: "User was updated successfully." });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error updating user with id=" + id
+  try {
+    var data = userService.updateUser(req);
+    if(data)
+      res.send(data);
+    else
+      res.status(404).send({
+        message: `Cannot update user with id=${id}. Maybe user was not found!`
       });
+  } catch(err) {
+    res.status(500).send({
+      message: "Error updating user with id=" + id
     });
+  };
 };
 // Delete a Tutorial with the specified id in the request
 exports.delete = async (req, res) => {
   try {
-    const id = req.params.email;
-    var data = await User.findByIdAndRemove(id)
-    if(data) {
-      res.send({
-        message: "User was deleted successfully!"
-      });
+    var data = await userService.deleteUser(req.params);
+    if(data != null) {
+      res.send(data);
     }
     else {
       res.status(404).send({
