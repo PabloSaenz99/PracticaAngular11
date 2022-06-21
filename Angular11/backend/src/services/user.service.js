@@ -1,3 +1,4 @@
+const errors = require("../utils/errors");
 const db = require("../config/db.config");
 const User = db.users;
 

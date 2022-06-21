@@ -1,5 +1,6 @@
 const express = require("express");     //Import express and cors modules
 const cors = require("cors");
+const { NotFound, GeneralError } = require("./src/utils/errors");
 const app = express();
 var corsOptions = {
   origin: true//"http://localhost:4200" //Changed port to 4200 to match de docker config (docker-compose.yml)
@@ -11,5 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", require("./src/routes/routes"));
+app.use(require("./src/middlewares/handle.error"));   //Middleware for handle errors
+
 
 module.exports = app;
