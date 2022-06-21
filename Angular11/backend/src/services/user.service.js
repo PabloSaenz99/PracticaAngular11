@@ -2,17 +2,17 @@ const db = require("../config/db.config");
 const User = db.users;
 
 async function createUser(body) {
-    if (!body.name || !body.email) {
+    if (!body.name || !body.email || !body.birthday) {
         return null;
     }
     let years = Math.abs(new Date(Date.now() - new Date(body.birthday)).getUTCFullYear() - 1970);
     // Create a User
     const user = new User({
-      name: body.name,
-      email: body.email,
-      birthday: body.birthday,
-      ageAtCreation: years,
-      tutorials: []
+        name: body.name,
+        email: body.email,
+        birthday: body.birthday,
+        ageAtCreation: years,
+        tutorials: []
     });
     return await user.save(user);
 }
@@ -33,6 +33,10 @@ async function findOneUser(params) {
 async function updateUser(req) {
     const id = req.params.id;
     var data = await User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    if(data)
+        return { message: "User was updated successfully." };
+    else
+        return null;
 }
 
 async function deleteUser(params) {
@@ -65,6 +69,6 @@ async function getUsersTutorials(){
 
 module.exports = {
     createUser, findAllUsers,
-    findOneUser, deleteUser, updateUser,
+    findOneUser, updateUser, deleteUser,
     addTutorialToUser, getUsersTutorials
 }

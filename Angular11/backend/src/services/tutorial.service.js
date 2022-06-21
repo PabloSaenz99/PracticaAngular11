@@ -15,7 +15,6 @@ async function createTutorial(body) {
 
 async function findAllTutorials(body) {
     const title = body.title;
-    console.log(title);
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
     return await Tutorial.find(condition);
 }

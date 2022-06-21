@@ -1,18 +1,16 @@
 const userService = require("../services/user.service");
 
-const db = require("../config/db.config");
-const User = db.users;
 // Create and Save a new User
 exports.create = async (req, res) => {
   try {
     var data = await userService.createUser(req.body)
-    if(data !== null) {
+    if (data !== null) {
       res.send(data);
     }
     else {
       res.status(400).send({ message: "You must fill all the fields!" });
     }
-  } catch(err) {
+  } catch (err) {
     res.status(500).send({
       message:
         err.message || "Some error occurred while creating the User."
@@ -34,14 +32,14 @@ exports.findAll = async (req, res) => {
 exports.findOne = async (req, res) => {
   try {
     var data = await userService.findOneUser(req.params);
-    if(data !== null){
+    if (data !== null) {
       res.send(data);
     }
-    else{
+    else {
       res.status(404).send({ message: "Not found user with id " + id });
     }
   }
-  catch(err) {
+  catch (err) {
     res.status(500).send({ message: "Error retrieving email with id=" + id });
   };
 };
@@ -54,13 +52,13 @@ exports.update = async (req, res) => {
   }
   try {
     var data = userService.updateUser(req);
-    if(data)
+    if (data)
       res.send(data);
     else
       res.status(404).send({
         message: `Cannot update user with id=${id}. Maybe user was not found!`
       });
-  } catch(err) {
+  } catch (err) {
     res.status(500).send({
       message: "Error updating user with id=" + id
     });
@@ -70,7 +68,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     var data = await userService.deleteUser(req.params);
-    if(data != null) {
+    if (data != null) {
       res.send(data);
     }
     else {
@@ -78,7 +76,7 @@ exports.delete = async (req, res) => {
         message: `Cannot delete user with id=${id}. Maybe user was not found!`
       });
     }
-  } catch(err) {
+  } catch (err) {
     res.status(500).send({
       message: "Could not delete user with email=" + id
     });
@@ -105,8 +103,8 @@ exports.addTutorial = async (req, res) => {
 exports.getUsersTutorials = async (req, res) => {
   try {
     var data = await userService.getUsersTutorials();
-    if(data != null) {
-      res.send(data);  
+    if (data != null) {
+      res.send(data);
     } else {
       res.status(404).send({
         message: "Error retrieving users and tutorials"
