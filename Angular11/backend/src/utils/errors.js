@@ -9,9 +9,9 @@ class GeneralError extends Error {
     getDefaultMsg() {return this.def;}
     getCode() {return 500;}
 }
-  
-class BadRequest extends GeneralError { def='400'; getCode() {return 400;} }
-class NotFound extends GeneralError { def="404"; getCode() {return 404;} }
+
+class BadRequest extends GeneralError { def='Bad request'; getCode() {return 400;} }
+class NotFound extends GeneralError { def='Not found'; getCode() {return 404;} }
   
 module.exports = {
     GeneralError,

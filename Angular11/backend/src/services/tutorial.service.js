@@ -1,9 +1,11 @@
 const db = require("../config/db.config");
 const Tutorial = db.tutorials;
 
+const errors = require("../utils/errors");
+
 async function createTutorial(body) {
     if (!body.title || !body.description) {
-        return null;
+        throw new errors.NotFound("Content can not be empty!");
     }
     const tutorial = new Tutorial({
         title: body.title,
@@ -21,11 +23,22 @@ async function findAllTutorials(body) {
 
 async function findOneTutorial(body) {
     const id = body.params.id;
-    return await Tutorial.findById(id);
+    var data = await Tutorial.findById(id);
+    if(data)
+        return data;
+    else
+        throw new errors.NotFound("Not found Tutorial with id " + id);
 }
 
 async function updateTutorial(req) {
-    return await Tutorial.findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false });
+    if (!req.body) {
+        throw new errors.BadRequest("Data to update can not be empty!");
+    }
+    var data = await Tutorial.findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false });
+    if(data)
+        return {message: "Tutorial was updated successfully."};
+    else
+        throw new errors.NotFound(`Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`); 
 }
 
 async function deleteTutorial(body) {
@@ -34,7 +47,7 @@ async function deleteTutorial(body) {
     if(data)
         return {message: `Tutorial was deleted successfully!`};
     else
-        return null;
+        throw new errors.BadRequest(`Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`);
 }
 
 async function deleteAllTutorials(){
