@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationMsg, NotificationType } from 'src/app/models/notification';
 import { Tutorial } from 'src/app/models/tutorial.model';
+import { NotificationService } from 'src/app/services/notification.service';
 import { TutorialService } from 'src/app/services/tutorial.service';
 @Component({
   selector: 'app-tutorials-list',
@@ -11,9 +13,11 @@ export class TutorialsListComponent implements OnInit{
   currentTutorial?: Tutorial;
   currentIndex = -1;
   title = '';
-  constructor(private tutorialService: TutorialService) { }
+  constructor(private tutorialService: TutorialService,
+    private notificationService: NotificationService) { }
   ngOnInit(): void {
     this.retrieveTutorials();
+    this.notificationService.sendNotification(new NotificationMsg("Holaaa", NotificationType.success))
   }
   retrieveTutorials(): void {
     this.tutorialService.getAll()
