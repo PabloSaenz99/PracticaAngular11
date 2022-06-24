@@ -24,7 +24,7 @@ export class TutorialService {
   update(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/id/${id}`, data);
   }
-  delete(id: string): Observable<any> {
+  delete(id: string): Observable<any> {    
     return this.http.delete(`${this.baseUrl}/id/${id}`);
   }
   deleteAll(): Observable<any> {

@@ -17,14 +17,12 @@ export class TutorialsListComponent implements OnInit{
     private notificationService: NotificationService) { }
   ngOnInit(): void {
     this.retrieveTutorials();
-    this.notificationService.sendNotification(new NotificationMsg("Holaaa", NotificationType.success))
   }
   retrieveTutorials(): void {
     this.tutorialService.getAll()
       .subscribe(
         data => {
           this.tutorials = data;
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -45,6 +43,7 @@ export class TutorialsListComponent implements OnInit{
         response => {
           console.log(response);
           this.refreshList();
+          this.notificationService.sendNotification("All tutorials were deleted", NotificationType.info);
         },
         error => {
           console.log(error);
@@ -55,7 +54,9 @@ export class TutorialsListComponent implements OnInit{
       .subscribe(
         data => {
           this.tutorials = data;
-          console.log(data);
+          if(data.length === 0) {
+            this.notificationService.sendNotification("No tutorials found", NotificationType.info);
+          }
         },
         error => {
           console.log(error);

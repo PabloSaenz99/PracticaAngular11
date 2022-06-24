@@ -3,6 +3,8 @@ import { Tutorial } from 'src/app/models/tutorial.model';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { NotificationType } from 'src/app/models/notification';
 
 @Component({
   selector: 'app-set-tutorial-user',
@@ -23,7 +25,8 @@ export class SetTutorialUserComponent implements OnInit {
 
   constructor(
     private tutorialService: TutorialService,
-    private userService: UserService) { 
+    private userService: UserService,
+    private notificationService: NotificationService) { 
     
     this.currentUser = new User();
     this.currentTutorial = new Tutorial();
@@ -68,6 +71,10 @@ export class SetTutorialUserComponent implements OnInit {
   }
 
   setUserTutorial(): void{
+    if(this.currentTutorialIndex === -1 || this.currentUserIndex === -1){
+      this.notificationService.sendNotification("You must select a user and a tutorial", NotificationType.warning);
+      return;
+    }
     const data: { tutorialId: string, userId: string } = {
       tutorialId: this.currentTutorial._id,
       userId: this.currentUser._id

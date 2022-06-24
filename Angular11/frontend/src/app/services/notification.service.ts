@@ -9,18 +9,24 @@ import { NotificationMsg, NotificationType } from "../models/notification";
 export class NotificationService {
     private notification: Subject<NotificationMsg> = new Subject<NotificationMsg>();
 
-    sendNotification(notification: NotificationMsg){
-        this.notification.next(notification);
+    sendNotification(message: string, type: NotificationType){
+        this.notification.next(new NotificationMsg(message, type));
     }
 
     constructor(toast: ToastrService) {
         this.notification.subscribe(message => {
             switch(message.type){
-                case NotificationType.success:
+                case NotificationType.success:                    
                     toast.success(message.message);
                     break;
+                case NotificationType.error:                    
+                    toast.error(message.message);
+                    break;
+                case NotificationType.warning:                    
+                    toast.warning(message.message);
+                    break;
                 default:
-                    toast.success(message.message);
+                    toast.info(message.message);
             }
         })
     }

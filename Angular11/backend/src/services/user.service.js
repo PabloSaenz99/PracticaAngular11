@@ -52,6 +52,9 @@ async function deleteUser(params) {
 }
 
 async function addTutorialToUser(body) {
+    if(!body.tutorialId || !body.userId){
+        throw new errors.BadRequest(`You must select a user and a tutorial`);
+    }
     const tutorialId = body.tutorialId;
     const userId = body.userId;
     var data = await User.findByIdAndUpdate(userId, {$push: {tutorials: tutorialId}});

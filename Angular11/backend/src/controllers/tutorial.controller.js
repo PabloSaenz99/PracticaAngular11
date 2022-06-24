@@ -43,12 +43,9 @@ exports.delete = async (req, res, next) => {
 // Delete all Tutorials from the database.
 exports.deleteAll = async (req, res, next) => {
   try {
-    res.send(await Tutorial.deleteMany({}));
+    res.send(await tutorialService.deleteAllTutorials());
   } catch(err) {
-    res.status(500).send({
-      message:
-        err.message || "Some error occurred while removing all tutorials."
-    });
+    next(err);
   };
 };
 // Find all published Tutorials
