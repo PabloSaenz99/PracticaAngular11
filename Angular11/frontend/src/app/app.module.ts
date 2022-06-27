@@ -14,6 +14,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { interceptor } from './interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AddTutorialComponent,
+      useClass: interceptor,
       multi: true
     }
   ],
