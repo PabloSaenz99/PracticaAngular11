@@ -83,6 +83,7 @@ export class SetTutorialUserComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.notificationService.sendNotification("User updated", NotificationType.success);
         },
         error => {
           console.log(error);
