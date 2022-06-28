@@ -33,11 +33,11 @@
             required
             [(ngModel)]='user.birthday'>
         </div>
-        <button (click)="saveUser()" class="btn-success">Submit</button>
+        <button (click)="saveUser()" class="btn btn-success">Submit</button>
       </div>
       <div *ngIf="submitted">
         <h4>User was submitted successfully!</h4>
-        <button class="btn-success" (click)="newUser()">Add</button>
+        <button class="btn btn-success" (click)="newUser()">Add</button>
       </div>
     </div>
   </div>

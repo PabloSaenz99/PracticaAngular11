@@ -1,45 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: beige;
+    background-color: #22AAA1;
     /*max-width: fit-content;
     margin: auto;*/
-}
-h1 {
-    color: aqua;
-    text-align: center;
 }
 p {
     font-family: verdana;
     font-size: 20px;
 }
-.home-list {
-    list-style-type: none;
-    display:flex;
-}
 
 a:visited {color: black;}   /* Visited link    */
 a:hover {color:darkcyan;}   /* Mouse over link */
-.nav-item{
-    background-color: bisque;
-    border: 1px solid black;
-    border-radius: 5px;
-
-    min-width: fit-content;
-    width: 10%;
-    line-height: 30px;
-
-    margin: 10px;
-    margin-top: 5px;
-    text-align: center;
-}
 
 .form-group {
-    background-color: aliceblue;
-    border: 1px solid black;
+    background-color: #84CAE7;
+    border: 1px solid #136F63;
     border-radius: 5px;
+    margin: 5px;
     text-align: start;
     width: min-content;
 }
+
+.btn{
+    background-color: #84CAE7;
+    border: 1px solid #136F63;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+    min-width: fit-content;
+    width: 10%;
+    line-height: 25px;
+}
+
 input{
     background-color: honeydew;
 }

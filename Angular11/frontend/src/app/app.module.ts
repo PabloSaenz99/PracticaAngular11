@@ -14,7 +14,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { interceptor } from './interceptor';
+import { interceptor } from './error.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,11 @@ import { interceptor } from './interceptor';
     //Used for toast messages:
     BrowserModule,
     BrowserAnimationsModule,  
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     {

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { Subject } from "rxjs";
 import { NotificationMsg, NotificationType } from "../../models/notification";
@@ -8,26 +8,27 @@ import { NotificationMsg, NotificationType } from "../../models/notification";
 })
 
 export class NotificationService {
+    
     private notification: Subject<NotificationMsg> = new Subject<NotificationMsg>();
 
     sendNotification(message: string, type: NotificationType){
         this.notification.next(new NotificationMsg(message, type));
     }
 
-    constructor(toast: ToastrService) {
+    constructor(private toast: ToastrService) {
         this.notification.subscribe(message => {
-            switch(message.type){
+            switch(message.type) {
                 case NotificationType.success:
-                    toast.success(message.message);
+                    this.toast.success(message.message);
                     break;
                 case NotificationType.error:
-                    toast.error(message.message);
+                    this.toast.error(message.message);
                     break;
                 case NotificationType.warning:
-                    toast.warning(message.message);
+                    this.toast.warning(message.message);
                     break;
                 default:
-                    toast.info(message.message);
+                    this.toast.info(message.message);
             }
         })
     }
