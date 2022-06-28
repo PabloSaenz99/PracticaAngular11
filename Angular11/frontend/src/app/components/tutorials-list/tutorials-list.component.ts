@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationMsg, NotificationType } from 'src/app/models/notification';
 import { Tutorial } from 'src/app/models/tutorial.model';
-import { NotificationService } from 'src/app/services/notification.service';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { TutorialService } from 'src/app/services/tutorial/tutorial.service';
 @Component({
   selector: 'app-tutorials-list',
   templateUrl: './tutorials-list.component.html',

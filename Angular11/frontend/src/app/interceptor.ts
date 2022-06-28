@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import {Observable, of, throwError} from 'rxjs';
 import {mergeMap, delay, retryWhen} from 'rxjs/operators';
 import { NotificationType } from "./models/notification";
-import { NotificationService } from "./services/notification.service";
+import { NotificationService } from "./services/notification/notification.service";
 
 @Injectable({
     providedIn: 'root'

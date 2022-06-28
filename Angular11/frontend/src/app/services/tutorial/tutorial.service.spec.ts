@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { Tutorial } from '../models/tutorial.model';
+import { Tutorial } from '../../models/tutorial.model';
 
 import { TutorialService } from './tutorial.service';
 

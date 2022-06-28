@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Tutorial } from 'src/app/models/tutorial.model';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { TutorialService } from 'src/app/services/tutorial/tutorial.service';
 import { FormsModule } from '@angular/forms';
 
 import { AddTutorialComponent } from './add-tutorial.component';
