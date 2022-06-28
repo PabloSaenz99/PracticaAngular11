@@ -11,9 +11,9 @@ export class AddUserComponent implements OnInit {
   today = new Date().toISOString().slice(0, 10);  
   user = new User();
   submitted = false;
+
   constructor(private userService: UserService) { }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   
   saveUser(): void {
     const data = {
@@ -31,6 +31,7 @@ export class AddUserComponent implements OnInit {
           console.log(error);
         });
   }
+
   newUser(): void {
     this.submitted = false;
     this.user = new User();

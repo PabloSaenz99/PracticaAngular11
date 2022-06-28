@@ -6,6 +6,7 @@ import { NotificationMsg, NotificationType } from "../models/notification";
 @Injectable({
     providedIn: 'root'
 })
+
 export class NotificationService {
     private notification: Subject<NotificationMsg> = new Subject<NotificationMsg>();
 
@@ -16,13 +17,13 @@ export class NotificationService {
     constructor(toast: ToastrService) {
         this.notification.subscribe(message => {
             switch(message.type){
-                case NotificationType.success:                    
+                case NotificationType.success:
                     toast.success(message.message);
                     break;
-                case NotificationType.error:                    
+                case NotificationType.error:
                     toast.error(message.message);
                     break;
-                case NotificationType.warning:                    
+                case NotificationType.warning:
                     toast.warning(message.message);
                     break;
                 default:

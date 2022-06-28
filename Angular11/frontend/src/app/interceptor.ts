@@ -19,19 +19,19 @@ export class interceptor implements HttpInterceptor{
                     mergeMap((error, index) => {
                         if (index < 2/*Number of attemps */ && error.status === 500) {
                             console.log(`Retry number: ${index}`);
-                            return of(error).pipe(delay(10 /*Miliseconst until retry */));
+                            return of(error).pipe(delay(10 /*Miliseconds until retry */));
                         }
                         else if(error.status === 400) {
-                            this.notification.sendNotification("Error 400", NotificationType.error);
+                            this.notification.sendNotification(`Error 400: ${error.error.message}`, NotificationType.error);
                             console.log(`Error 400`);
                         }
                         else if(error.status === 404){
-                            this.notification.sendNotification("Error 404", NotificationType.error);
+                            this.notification.sendNotification(`Error 404: ${error.error.message}`, NotificationType.error);
                             console.log(`Error 404`);
                         }
                         else {
-                            this.notification.sendNotification("Unknown error", NotificationType.error);
-                            console.log("Some error");
+                            this.notification.sendNotification(`Unknown error: ${error.error.message}`, NotificationType.error);
+                            console.log(`Some error`);
                         }
                         throw error;
                     })
