@@ -19,6 +19,7 @@ export class AddUserComponent implements OnInit {
     const data = {
       email: this.user.email,
       name: this.user.name,
+      password: this.user.password,
       birthday: this.user.birthday
     };
     this.userService.create(data)

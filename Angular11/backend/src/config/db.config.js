@@ -22,6 +22,24 @@ if(process.env.TEST !== "test") {
       console.log("Cannot connect to the database!", err);
       process.exit();
     });
+
+    emptyDataBase();
+}
+
+//Add a new user if the database is empty
+async function emptyDataBase(){
+  var res = await db.users.find({});
+  if(res.length === 0){
+    //Insert new user
+    const user = new db.users({
+      name: "User1",
+      email: "email1",
+      birthday: new Date().toISOString().slice(0, 10),
+      ageAtCreation: 0,
+      tutorials: []
+    });
+    await user.save(user);
+  }
 }
 
 module.exports = db;

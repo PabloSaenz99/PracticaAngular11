@@ -3,7 +3,7 @@ const db = require("../config/db.config");
 const User = db.users;
 
 async function createUser(body) {
-    if (!body.name || !body.email || !body.birthday) {
+    if (!body.name || !body.email || !body.password || !body.birthday) {
         throw new errors.BadRequest("You must fill all the fields!");
     }
     let years = Math.abs(new Date(Date.now() - new Date(body.birthday)).getUTCFullYear() - 1970);
@@ -11,6 +11,7 @@ async function createUser(body) {
     const user = new User({
         name: body.name,
         email: body.email,
+        password: body.password,
         birthday: body.birthday,
         ageAtCreation: years,
         tutorials: []
