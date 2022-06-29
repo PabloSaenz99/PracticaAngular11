@@ -8,14 +8,15 @@ import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.com
 import { AddUserComponent } from './components/add-user/add-user.component';
 
 import { SetTutorialUserComponent } from './components/set-tutorial-user/set-tutorial-user.component';
+import { LoginUserComponent } from './components/login-user/login-user.component';
 const routes: Routes = [
-  { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'tutorials', component: TutorialsListComponent },
   { path: 'tutorials/:id', component: TutorialDetailsComponent },
   { path: 'addTutorial', component: AddTutorialComponent },
 
   { path: 'addUser', component: AddUserComponent },
-
+  { path: 'login', component: LoginUserComponent },
   { path: 'setTutorialUser', component: SetTutorialUserComponent }
 ];
 

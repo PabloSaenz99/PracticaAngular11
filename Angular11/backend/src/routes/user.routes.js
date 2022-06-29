@@ -8,6 +8,7 @@ router.get("/:id", users.findOne);
 
 router.post("/", users.create);
 router.post("/set", users.addTutorial);
+router.post("/login", users.login);
 
 router.put("/:id", users.update);
 router.delete("/:id", users.delete);

@@ -8,6 +8,14 @@ exports.create = async (req, res, next) => {
     next(err);
   };
 };
+
+exports.login = async (req, res, next) => {
+  try {
+    res.send(await userService.loginUser(req.body));
+  } catch (err) {
+    next(err);
+  };
+};
 // Retrieve all User from the database.
 exports.findAll = async (req, res, next) => {
   try {

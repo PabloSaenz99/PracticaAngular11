@@ -1,4 +1,5 @@
 const errors = require("../utils/errors");
+const jwt = require('jsonwebtoken');
 const db = require("../config/db.config");
 const User = db.users;
 
@@ -17,6 +18,21 @@ async function createUser(body) {
         tutorials: []
     });
     return await user.save(user);
+}
+
+async function loginUser(body) {
+    if (!body.email || !body.password) {
+        throw new errors.BadRequest("You must write an email and password!");
+    }
+
+    const user = await User.findOne({email: body.email});
+    if (!user)
+        throw new errors.NotFound(`The is no user with that email`);
+    if (user.password !== body.password)
+        throw new errors.BadRequest(`Incorrect password`);
+	
+    const token = jwt.sign({_id: user._id}, 'secretkey');
+    return token;
 }
 
 async function findAllUsers() {
@@ -75,7 +91,7 @@ async function getUsersTutorials(){
 }
 
 module.exports = {
-    createUser, findAllUsers,
+    createUser, loginUser, findAllUsers,
     findOneUser, updateUser, deleteUser,
     addTutorialToUser, getUsersTutorials
 }

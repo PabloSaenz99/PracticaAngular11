@@ -7,6 +7,7 @@ import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.com
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
 import { SetTutorialUserComponent } from './components/set-tutorial-user/set-tutorial-user.component';
+import { LoginUserComponent } from './components/login-user/login-user.component';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,7 +25,8 @@ import { interceptor } from './error.interceptor';
     TutorialsListComponent,
 
     AddUserComponent,
-    SetTutorialUserComponent
+    SetTutorialUserComponent,
+    LoginUserComponent
   ],
   imports: [
     CommonModule,
