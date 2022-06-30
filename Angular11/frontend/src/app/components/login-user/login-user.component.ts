@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user/user.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-user',
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class LoginUserComponent implements OnInit {
   user = new User();
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
   ngOnInit(): void {}
 
   loginUser(): void{
@@ -20,10 +21,12 @@ export class LoginUserComponent implements OnInit {
       password: this.user.password
     };
     this.userService.login(data).subscribe(
-      response => {
-        console.log(response);
+      res => {
+        console.log(res);
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/tutorials']);
       },
-      error => {
+      error => {                
         console.log(error);
       });
   }

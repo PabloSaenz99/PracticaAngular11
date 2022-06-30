@@ -21,6 +21,7 @@ async function createUser(body) {
 }
 
 async function loginUser(body) {
+    //https://blog.logrocket.com/how-to-secure-a-rest-api-using-jwt-7efd83e71432/
     if (!body.email || !body.password) {
         throw new errors.BadRequest("You must write an email and password!");
     }
@@ -32,7 +33,7 @@ async function loginUser(body) {
         throw new errors.BadRequest(`Incorrect password`);
 	
     const token = jwt.sign({_id: user._id}, 'secretkey');
-    return token;
+    return JSON.stringify({"token" : token});
 }
 
 async function findAllUsers() {
