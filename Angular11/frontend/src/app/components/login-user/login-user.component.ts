@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user/user.service';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,6 +23,7 @@ export class LoginUserComponent implements OnInit {
       res => {
         console.log(res);
         localStorage.setItem('token', res.token);
+        localStorage.setItem('name', res.name);
         this.router.navigate(['/tutorials']);
       },
       error => {                
