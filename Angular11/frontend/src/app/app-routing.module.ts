@@ -16,12 +16,13 @@ import { AuthGuard } from './services/auth-guard/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'tutorials', component: TutorialsListComponent, canActivate: [AuthGuard] },
-  { path: 'tutorials/:id', component: TutorialDetailsComponent, canActivate: [AuthGuard]  },
-  { path: 'addTutorial', component: AddTutorialComponent, canActivate: [AuthGuard]  },
+  { path: 'tutorials/:id', component: TutorialDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'addTutorial', component: AddTutorialComponent, canActivate: [AuthGuard] },
 
-  { path: 'addUser', component: AddUserComponent, canActivate: [AuthGuard]  },
-  { path: 'login', component: LoginUserComponent, canActivate: [AuthGuard]  },
-  { path: 'setTutorialUser', component: SetTutorialUserComponent, canActivate: [AuthGuard]  }
+  { path: 'setTutorialUser', component: SetTutorialUserComponent, canActivate: [AuthGuard] },
+
+  { path: 'addUser', component: AddUserComponent },
+  { path: 'login', component: LoginUserComponent }
 ];
 
 function tokenGetter() {

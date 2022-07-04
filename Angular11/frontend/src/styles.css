@@ -33,6 +33,12 @@ a:hover {color:darkcyan;}   /* Mouse over link */
     line-height: 25px;
 }
 
+.btn:hover {
+    background-color: #136F63;
+    color: white;
+    cursor: pointer
+  }
+
 input{
     background-color: honeydew;
 }

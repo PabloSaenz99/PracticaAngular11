@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { NotificationType } from 'src/app/models/notification';
 
 @Component({
   selector: 'app-login-user',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginUserComponent implements OnInit {
   user = new User();
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private notificationService: NotificationService) { }
   ngOnInit(): void {}
 
   loginUser(): void{
@@ -21,13 +23,19 @@ export class LoginUserComponent implements OnInit {
     };
     this.userService.login(data).subscribe(
       res => {
-        console.log(res);
         localStorage.setItem('token', res.token);
         localStorage.setItem('name', res.name);
         this.router.navigate(['/tutorials']);
+        this.notificationService.sendNotification("Login succesfull", NotificationType.success);
       },
       error => {                
         console.log(error);
       });
+  }
+
+  logoutUser(): void{
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    this.notificationService.sendNotification("Logout succesfull", NotificationType.success);
   }
 }
