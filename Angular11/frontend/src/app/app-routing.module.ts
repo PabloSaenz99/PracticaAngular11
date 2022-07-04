@@ -26,7 +26,7 @@ const routes: Routes = [
 ];
 
 function tokenGetter() {
-  return localStorage.getItem("access_token");
+  return localStorage.getItem("token");
 }
 const JWT_Module_Options: JwtModuleOptions = {
   config: {

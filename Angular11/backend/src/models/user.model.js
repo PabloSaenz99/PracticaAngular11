@@ -5,7 +5,8 @@ module.exports = mongoose => {
       {
         email: String,
         name: String,
-        password: String,
+        hash: String,
+        salt: String,
         birthday: mongoose.Date,
         ageAtCreation: Number,
         tutorials: [{type: mongoose.Types.ObjectId, ref: 'tutorial' }]

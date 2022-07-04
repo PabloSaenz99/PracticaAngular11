@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const errors = require("../utils/errors");
 const jwt = require('jsonwebtoken');
 const db = require("../config/db.config");
@@ -9,10 +10,12 @@ async function createUser(body) {
     }
     let years = Math.abs(new Date(Date.now() - new Date(body.birthday)).getUTCFullYear() - 1970);
     // Create a User
+    var saltAux = createSalt();
     const user = new User({
         name: body.name,
         email: body.email,
-        password: body.password,
+        salt: saltAux,
+        hash: createHash(body.password, saltAux),
         birthday: body.birthday,
         ageAtCreation: years,
         tutorials: []
@@ -29,7 +32,7 @@ async function loginUser(body) {
     const user = await User.findOne({email: body.email});
     if (!user)
         throw new errors.NotFound(`The is no user with that email`);
-    if (user.password !== body.password)
+    if (user.hash !== createHash(body.password, user.salt))
         throw new errors.BadRequest(`Incorrect password`);
 	
     const token = jwt.sign({_id: user._id}, 'secretkey');
@@ -89,6 +92,17 @@ async function getUsersTutorials(){
         return data;
     else
         throw new errors.NotFound("Error retrieving users and tutorials");
+}
+
+function createSalt(){
+    return crypto.randomBytes(8).toString('hex');
+}
+
+function createHash(password, salt) {
+    var aux = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+    aux.update(password);
+    var hash = aux.digest('hex');
+    return hash;
 }
 
 module.exports = {
