@@ -12,8 +12,9 @@ async function createUser(body) {
     // Create a User
     var saltAux = createSalt();
     const user = new User({
-        name: body.name,
         email: body.email,
+        name: body.name,
+        nickName: body.name.replace(/[^a-zA-Z0-9]/gi, '-'),
         salt: saltAux,
         hash: createHash(body.password, saltAux),
         birthday: body.birthday,

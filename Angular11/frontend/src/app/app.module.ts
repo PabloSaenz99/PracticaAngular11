@@ -40,7 +40,7 @@ import { interceptor } from './error.interceptor';
     BrowserAnimationsModule,  
     ToastrModule.forRoot({
       timeOut: 1500,
-      positionClass: 'toast-top-center',
+      positionClass: 'toast-top-right',
       preventDuplicates: true,
     })
   ],
