@@ -23,8 +23,6 @@ export class LoginUserComponent implements OnInit {
     };
     this.userService.login(data).subscribe(
       res => {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('name', res.name);
         this.router.navigate(['/tutorials']);
         this.notificationService.sendNotification("Login succesfull", NotificationType.success);
       },
@@ -34,8 +32,12 @@ export class LoginUserComponent implements OnInit {
   }
 
   logoutUser(): void{
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
-    this.notificationService.sendNotification("Logout succesfull", NotificationType.success);
+    this.userService.logout().subscribe(
+      res => { 
+        this.notificationService.sendNotification("Logout succesfull", NotificationType.success);
+      },
+      error => {                
+        console.log(error);
+      });
   }
 }

@@ -23,6 +23,9 @@ export class UserService {
   login(data: any): Observable<any> {
     return this.http.post(`${baseUrl}/login`, data);
   }
+  logout(): Observable<any> {
+    return this.http.delete(`${baseUrl}/logout`);
+  }
   update(id: string, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }

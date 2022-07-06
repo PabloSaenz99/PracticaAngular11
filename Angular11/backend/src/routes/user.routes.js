@@ -6,7 +6,7 @@ const router = require("express").Router();
 //https://levelup.gitconnected.com/angular-route-guards-for-authentication-d77fb01f04ae
 
 router.get("/", users.findAll);
-router.get("/tutoriales-de-usuario", users.getUsersTutorials)
+router.get("/tutoriales-de-usuario", users.getUsersTutorials);
 
 router.get("/:id", users.findOne);
 
@@ -15,6 +15,8 @@ router.post("/set", users.addTutorial);
 router.post("/login", users.login);
 
 router.put("/:id", users.update);
+
+router.delete("/logout", users.logout);
 router.delete("/:id", users.delete);
 
 module.exports = router;

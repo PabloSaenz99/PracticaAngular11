@@ -3,6 +3,7 @@ const userService = require("../services/user.service");
 // Create and Save a new User
 exports.create = async (req, res, next) => {
   try {
+    console.log(req.cookies.token);
     res.send(await userService.createUser(req.body));
   } catch (err) {
     next(err);
@@ -11,11 +12,28 @@ exports.create = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    res.send(await userService.loginUser(req.body));
+    console.log("Login\nToken pre:");
+    console.log(req.cookies);
+    var result = await userService.loginUser(req.body);
+    const token = JSON.parse(result).token;
+    res.status(202).cookie('token', token, { httpOnly: false, secure: false, maxAge: 9000000, sameSite:'none' });
+    console.log("Token post:");
+    console.log(req.cookies);
+    console.log("End login");
+    res.send(result);
   } catch (err) {
     next(err);
   };
 };
+
+exports.logout = async (req, res, next) => {
+  try {
+    res.clearCookie('token').send({'Logged out':''});
+  } catch (err) {
+    next(err);
+  };
+};
+
 // Retrieve all User from the database.
 exports.findAll = async (req, res, next) => {
   try {

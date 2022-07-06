@@ -5,7 +5,7 @@ const parser = (req, res, next) => {
     console.log(` Request url: ${req.url}`);
     console.log(`\x1b[35m Request params: ${JSON.stringify(req.params)}`);
     console.log(`\x1b[35m Request body: ${JSON.stringify(req.body)}`);
-
+    console.log(`\x1b[35m Result cookies: ${JSON.stringify(req.cookies)}`);
 
     console.log(`\x1b[34m Result status code: ${res.statusCode}`);
     console.log(`\x1b[34m Response time: ${time}ms`);
