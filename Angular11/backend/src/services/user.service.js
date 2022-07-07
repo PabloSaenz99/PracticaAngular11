@@ -37,7 +37,8 @@ async function loginUser(body) {
         throw new errors.BadRequest(`Incorrect password`);
 	
     const token = jwt.sign({_id: user._id}, 'secretkey');
-    return JSON.stringify({"token" : token, "name": user.name});
+    console.log(token)
+    return {token, "name": user.name};
 }
 
 async function findAllUsers() {

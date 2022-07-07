@@ -12,14 +12,12 @@ exports.create = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    console.log("Login\nToken pre:");
-    console.log(req.cookies);
     var result = await userService.loginUser(req.body);
-    const token = JSON.parse(result).token;
-    res.status(202).cookie('token', token, { httpOnly: false, secure: false, maxAge: 9000000, sameSite:'none' });
+    const token = result.token;
+    console.log(token)
+    res.status(202).cookie('token', token, { httpOnly: true, secure: true, maxAge: 9000000, sameSite:'none' });
     console.log("Token post:");
     console.log(req.cookies);
-    console.log("End login");
     res.send(result);
   } catch (err) {
     next(err);
