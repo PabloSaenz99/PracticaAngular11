@@ -20,8 +20,8 @@ export class UserService {
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }
-  login(data: any): Observable<any> {
-    return this.http.post(`${baseUrl}/login`, data);
+  login(data: any): Observable<boolean> {
+    return this.http.post<boolean>(`${baseUrl}/login`, data);
   }
   logout(): Observable<any> {
     return this.http.delete(`${baseUrl}/logout`);

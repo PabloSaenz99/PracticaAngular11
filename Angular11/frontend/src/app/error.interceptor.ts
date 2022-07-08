@@ -8,7 +8,7 @@ import { NotificationService } from "./services/notification/notification.servic
 @Injectable({
     providedIn: 'root'
 })
-export class interceptor implements HttpInterceptor{
+export class ErrorInterceptor implements HttpInterceptor{
 
     constructor(private notification: NotificationService){}
 
@@ -17,12 +17,13 @@ export class interceptor implements HttpInterceptor{
             //Success
             tap(event => {
                 if(event instanceof HttpResponse){
+                    /*
                     if(event.status >= 100 && event.status < 200) {           
                         this.notification.sendNotification(`${event.statusText}`, NotificationType.info);
                     }
                     else if(event.status >= 200 && event.status < 300){                      
                         this.notification.sendNotification(`Success`, NotificationType.success);
-                    }
+                    }*/
                 }
             }),
             //Errors

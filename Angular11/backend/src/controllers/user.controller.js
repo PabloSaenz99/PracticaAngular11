@@ -14,11 +14,8 @@ exports.login = async (req, res, next) => {
   try {
     var result = await userService.loginUser(req.body);
     const token = result.token;
-    console.log(token)
-    res.status(202).cookie('token', token, { httpOnly: true, secure: true, maxAge: 9000000, sameSite:'none' });
-    console.log("Token post:");
-    console.log(req.cookies);
-    res.send(result);
+    res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 9000000, sameSite:'none' });
+    res.send(true);
   } catch (err) {
     next(err);
   };
