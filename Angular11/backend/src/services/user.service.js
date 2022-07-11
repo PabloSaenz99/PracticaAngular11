@@ -29,7 +29,7 @@ async function loginUser(body) {
     if (!body.email || !body.password) {
         throw new errors.BadRequest(errors.errorType.FillAllFields);
     }
-
+    
     const user = await User.findOne({email: body.email});
     if (!user)
         throw new errors.NotFound(errors.errorType.CannotFindUser);

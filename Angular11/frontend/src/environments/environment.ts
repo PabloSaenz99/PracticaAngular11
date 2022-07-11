@@ -8,7 +8,8 @@ export const environment = {
   production: false,
   title: 'Local Environment Heading',
   url: 'http://localhost',
-  port:':3000'
+  port:':3000',
+  language: 'english'
 };
 
 /*

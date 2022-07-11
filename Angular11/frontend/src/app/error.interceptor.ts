@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
 import { mergeMap, delay, retryWhen, tap } from 'rxjs/operators';
-import { NotificationType } from "./models/notification";
+import { NotificationType, getErrorMessage } from "./models/notification";
 import { NotificationService } from "./services/notification/notification.service";
 
 @Injectable({
@@ -36,14 +36,14 @@ export class ErrorInterceptor implements HttpInterceptor{
                                 return of(error).pipe(delay(10 /*Miliseconds until retry */));
                             }
                             else{
-                                this.notification.sendNotification(`Error ${error.status}: ${error.error.message}`, NotificationType.error);
+                                this.notification.sendNotification(`Error ${error.status}: ${getErrorMessage(error.error.message)}`, NotificationType.error);
                             }
                         }
                         else if(error.status >= 400 && error.status < 500) {                       
-                            this.notification.sendNotification(`Error ${error.status}: ${error.error.message}`, NotificationType.error);
+                            this.notification.sendNotification(`Error ${error.status}: ${getErrorMessage(error.error.message)}`, NotificationType.error);
                         }
                         else {
-                            this.notification.sendNotification(`Error ${error.status}: ${error.error.message}`, NotificationType.warning);
+                            this.notification.sendNotification(`Error ${error.status}: ${getErrorMessage(error.error.message)}`, NotificationType.warning);
                         }
                         console.log(`Error ${error.status}`);
                         throw error;

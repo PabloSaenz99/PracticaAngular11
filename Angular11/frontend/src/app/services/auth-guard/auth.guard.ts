@@ -13,11 +13,15 @@ export class AuthGuard implements CanActivate {
 	constructor(public auth: AuthService, public router: Router, private notificationService: NotificationService) {}
 
 	async canActivate(): Promise<boolean> {
-		var isAuthenticated = await this.auth.isAuthenticated();
-		if (!isAuthenticated) {
-			this.router.navigate(['/login']);
-			this.notificationService.sendNotification("You need to be logged in!", NotificationType.warning);
+		try {	
+			var isAuthenticated = await this.auth.isAuthenticated();
+			if (!isAuthenticated) {
+				this.router.navigate(['/login']);
+				this.notificationService.sendNotification("You need to be logged in!", NotificationType.warning);
+			}
+			return isAuthenticated;
+		} catch (error) {
+			return false;
 		}
-		return isAuthenticated;
 	}
 }

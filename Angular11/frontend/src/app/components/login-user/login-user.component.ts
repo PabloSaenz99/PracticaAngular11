@@ -22,23 +22,23 @@ export class LoginUserComponent implements OnInit {
       password: this.user.password
     };
     this.userService.login(data).subscribe(
-      res => {        
+      res => {
         if(res == true) {
           this.router.navigate(['/tutorials']);
           this.notificationService.sendNotification("Login succesfull", NotificationType.success);
         }
       },
-      error => {                
+      error => {         
         console.log(error);
       });
   }
 
   logoutUser(): void{
     this.userService.logout().subscribe(
-      res => { 
+      res => {
         this.notificationService.sendNotification("Logout succesfull", NotificationType.success);
       },
-      error => {                
+      error => {           
         console.log(error);
       });
   }
