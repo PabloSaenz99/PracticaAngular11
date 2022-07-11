@@ -1,7 +1,7 @@
 class GeneralError extends Error {
     constructor(message) {
         super();
-        this.message = message? message : this.getDefaultMsg();
+        this.message = message? message: this.getDefaultMsg();//Code (errorType) or custom message
     }
 
     def = "(Auto) Internal server error";
@@ -10,22 +10,22 @@ class GeneralError extends Error {
     getCode() {return 500;}
 }
 
-class BadRequest extends GeneralError { def='Bad request'; getCode() {return 400;} }
-class NotFound extends GeneralError { def='Not found'; getCode() {return 404;} }
+class BadRequest extends GeneralError { def='Bad request (auto)'; getCode() {return 400;} }
+class NotFound extends GeneralError { def='Not found (auto)'; getCode() {return 404;} }
 
 const errorType = {
-    FillAllFields: {CustomErrorCode: 0, msg: "You must fill all fields"},
-    CannotGetData: {CustomErrorCode: 1, msg: "Error retrieving data"},
-    CannotFindUser: {CustomErrorCode: 2, msg: "There is no user with that email"},
-    CannotUpdateUser: {CustomErrorCode: 3, msg: "Cannot update user"},
-    CannotDeleteUser: {CustomErrorCode: 4, msg: "Cannot delete user"},
-    IncorrectPassword: {CustomErrorCode: 5, msg: "Incorrect password"},
-    SelectUserAndTutorial: {CustomErrorCode: 6, msg: "You must select a user and a tutorial"},
-    CannotFindTutorial: {CustomErrorCode: 7, msg: "There is no tutorial with that title"},
-    CannotUpdateTutorial: {CustomErrorCode: 8, msg: "Cannot update tutorial"},
-    CannotDeleteTutorial: {CustomErrorCode: 9, msg: "Cannot delete tutorial"},
+    FillAllFields: '0',
+    CannotGetData: '1',
+    CannotFindUser: '2',
+    CannotUpdateUser: '3',
+    CannotDeleteUser: '4',
+    IncorrectPassword: '5',
+    SelectUserAndTutorial: '6',
+    CannotFindTutorial: '7',
+    CannotUpdateTutorial: '8',
+    CannotDeleteTutorial: '9'
 }
-  
+
 module.exports = {
     GeneralError,
     BadRequest,

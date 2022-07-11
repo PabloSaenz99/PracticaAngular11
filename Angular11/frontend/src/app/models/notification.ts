@@ -18,17 +18,19 @@ export enum NotificationType{
 }
 /**
  * 
- * @param err Error msg (error.error.message)
+ * @param err Error msg (error.error)
  * @returns error string in the selected language in the env
  */
-export function getErrorMessage(err: {CustomErrorCode: number, msg: string}): string{
-    if(environment.language === 'english')
-        return Object.values(ErrorMessage)[err.CustomErrorCode];
+export function getErrorMessage(err: {customCode: number, message: string}): string{ 
+    if(err.customCode === -1)   //If code is -1 its not a defined error, returns its message, else returns the custome code in the language
+        return err.message;
+    else if(environment.language === 'english')
+        return Object.values(ErrorMessage)[err.customCode];
     else
         return "";
 }
 
-enum ErrorMessage{
+enum ErrorMessage {
     FillAllFields = "You must fill all fields",
     CannotGetData = "Error retrieving data",
     CannotFindUser = "There is no user with that email",
