@@ -37,7 +37,6 @@ async function loginUser(body) {
         throw new errors.BadRequest(errors.errorType.IncorrectPassword);
 	
     const token = jwt.sign({_id: user._id}, 'secretkey');
-    console.log(token)
     return {token, "name": user.name};
 }
 
@@ -46,8 +45,8 @@ async function findAllUsers() {
 }
 
 async function findOneUser(params) {
-    const id = params.id;
-    var data = await User.findOne({email: id});
+    const email1 = params.email;
+    var data = await User.findOne({email: email1});
     if(data)
         return data;
     else

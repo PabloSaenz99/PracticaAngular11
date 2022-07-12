@@ -3,7 +3,6 @@ const userService = require("../services/user.service");
 // Create and Save a new User
 exports.create = async (req, res, next) => {
   try {
-    console.log(req.cookies.token);
     res.send(await userService.createUser(req.body));
   } catch (err) {
     next(err);
@@ -13,9 +12,7 @@ exports.create = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     var result = await userService.loginUser(req.body);
-    const token = result.token;
-    res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 9000000, sameSite:'none' });
-    res.send(true);
+    res.cookie('token', result.token, { httpOnly: true, secure: true, maxAge: 604800, sameSite:'none' }).send();
   } catch (err) {
     next(err);
   };

@@ -1,17 +1,21 @@
 class GeneralError extends Error {
     constructor(message) {
         super();
-        this.message = message? message: this.getDefaultMsg();//Code (errorType) or custom message
-    }
+        this.message = message? message: "Internal server error (Auto)";//Code (errorType) or custom message
+    }    
 
-    def = "(Auto) Internal server error";
-
-    getDefaultMsg() {return this.def;}
+    getDefaultMsg() {return this.message;}
     getCode() {return 500;}
 }
 
-class BadRequest extends GeneralError { def='Bad request (auto)'; getCode() {return 400;} }
-class NotFound extends GeneralError { def='Not found (auto)'; getCode() {return 404;} }
+class BadRequest extends GeneralError { 
+    constructor() {super('Bad request (auto)');}
+    getCode() {return 400;}
+}
+class NotFound extends GeneralError { 
+    constructor() {super('Not found (auto)');}
+    getCode() {return 404;} 
+}
 
 const errorType = {
     FillAllFields: '0',

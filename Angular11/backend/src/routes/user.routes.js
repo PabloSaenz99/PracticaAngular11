@@ -8,7 +8,7 @@ const router = require("express").Router();
 router.get("/", users.findAll);
 router.get("/tutoriales-de-usuario", users.getUsersTutorials);
 
-router.get("/:id", users.findOne);
+router.get("/:email", users.findOne);
 
 router.post("/", users.create);
 router.post("/set", users.addTutorial);

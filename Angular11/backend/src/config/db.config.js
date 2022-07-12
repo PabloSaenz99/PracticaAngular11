@@ -34,6 +34,7 @@ async function emptyDataBase(){
     const user = new db.users({
       name: "User1",
       email: "email1",
+      password: "pass1",
       birthday: new Date().toISOString().slice(0, 10),
       ageAtCreation: 0,
       tutorials: []

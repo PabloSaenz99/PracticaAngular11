@@ -9,10 +9,9 @@ test("config test", t => t.pass());
 let mongod;
 
 const connectDB = async() => {
-    mongod = await MongoMemoryServer.create();
+    mongod = await MongoMemoryServer.create({instance: {port:45055}});
     mongoose.connect(mongod.getUri(), err => {
-        if (err)
-            console.error(err);
+        if (err) console.error(err);
     });
     console.log(`MongoDB IP: ${mongod._instanceInfo.ip} port: ${mongod._instanceInfo.port}`);
     app = express();
@@ -23,4 +22,4 @@ const disconnectDB = async() => {
 	//await mongod.stop();
 };
 
-module.exports = { connectDB, disconnectDB };
+module.exports = { connectDB, disconnectDB, mongod };
