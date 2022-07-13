@@ -1,7 +1,7 @@
 const err = require('../utils/errors')
 
 const isLoggedIn = (req, res, next) => {
-    if(process.env.TEST !== "test") {
+    if(req.path !== '/api/users/login' && req.path !== '/api/users') {  //Do not intercept login or create user paths
         const cookie = req.cookies.token;
         if (!cookie) {
             console.log("You need to login");

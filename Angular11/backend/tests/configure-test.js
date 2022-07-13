@@ -1,10 +1,6 @@
-const test = require("ava");
-
 const {MongoMemoryServer} = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 const express = require('express');
-
-test("config test", t => t.pass());
 
 let mongod;
 
@@ -19,7 +15,6 @@ const connectDB = async() => {
 
 const disconnectDB = async() => {
     mongoose.disconnect();
-	//await mongod.stop();
 };
 
-module.exports = { connectDB, disconnectDB, mongod };
+module.exports = { connectDB, disconnectDB };

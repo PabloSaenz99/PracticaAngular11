@@ -9,11 +9,11 @@ class GeneralError extends Error {
 }
 
 class BadRequest extends GeneralError { 
-    constructor() {super('Bad request (auto)');}
+    constructor(message) {super(message? message:'Bad request (auto)');}
     getCode() {return 400;}
 }
 class NotFound extends GeneralError { 
-    constructor() {super('Not found (auto)');}
+    constructor(message) {super(message? message:'Not found (auto)');}
     getCode() {return 404;} 
 }
 

@@ -1,16 +1,19 @@
 const tutorials = require("../controllers/tutorial.controller.js");
 const router = require("express").Router();
 
+const trycatch = fn => (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+}
 
-router.post("/", tutorials.create);
-router.get("/", tutorials.findAll);
+router.post("/", trycatch(tutorials.create));
+router.get("/", trycatch(tutorials.findAll));
 
-router.get("/published/", tutorials.findAllPublished);
+router.get("/published/", trycatch(tutorials.findAllPublished));
 
-router.get("/id/:id", tutorials.findOne);
-router.put("/id/:id", tutorials.update);
-router.delete("/id/:id", tutorials.delete);
+router.get("/id/:id", trycatch(tutorials.findOne));
+router.put("/id/:id", trycatch(tutorials.update));
+router.delete("/id/:id", trycatch(tutorials.delete));
 
-router.delete("/", tutorials.deleteAll);
+router.delete("/", trycatch(tutorials.deleteAll));
 
 module.exports = router;

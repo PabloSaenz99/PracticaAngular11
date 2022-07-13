@@ -43,6 +43,6 @@ export class UserService {
     return this.http.post(`${baseUrl}/set`, data);
   }
   getUsersTutorials(): Observable<any> {
-    return this.http.get(`${baseUrl}/tutoriales-de-usuario`);
+    return this.http.get(`${baseUrl}/user-tutorials`);
   }
 }

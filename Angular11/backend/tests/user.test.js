@@ -45,9 +45,7 @@ test.serial("Get created user and add a tutorial to it", async t => {
 	const b = {tutorialId: "62c2a275b61e4ad379b16b82", userId: result.body._id};
 	result = await request.post("/api/users/set/").send(b);
 	t.is(result.body.message, 'User was updated successfully.');
-});
-
-//test.afterEach.always(() => User.delete());
+});	
 
 //Stop te database when test are finished
 test.after.always("Stop mongo", async t => {

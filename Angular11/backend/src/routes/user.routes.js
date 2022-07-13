@@ -5,18 +5,22 @@ const router = require("express").Router();
 //https://medium.com/@ryanchenkie_40935/angular-authentication-using-route-guards-bf7a4ca13ae3
 //https://levelup.gitconnected.com/angular-route-guards-for-authentication-d77fb01f04ae
 
-router.get("/", users.findAll);
-router.get("/tutoriales-de-usuario", users.getUsersTutorials);
+const trycatch = fn => (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+}
 
-router.get("/:email", users.findOne);
+router.get("/", trycatch(users.findAll));
+router.get("/user-tutorials", trycatch(users.getUsersTutorials));
 
-router.post("/", users.create);
-router.post("/set", users.addTutorial);
-router.post("/login", users.login);
+router.get("/:email", trycatch(users.findOne));
 
-router.put("/:id", users.update);
+router.post("/", trycatch(users.create));
+router.post("/set", trycatch(users.addTutorial));
+router.post("/login", trycatch(users.login));
 
-router.delete("/logout", users.logout);
-router.delete("/:id", users.delete);
+router.put("/:id", trycatch(users.update));
+
+router.delete("/logout", trycatch(users.logout));
+router.delete("/:id", trycatch(users.delete));
 
 module.exports = router;

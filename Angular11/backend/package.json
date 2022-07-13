@@ -38,7 +38,7 @@
   },
   "ava": {
     "files": [
-      "tests/*"
+      "tests/*.test.js"
     ],
     "require": [
       "babel-register",
