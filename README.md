@@ -27,7 +27,7 @@ https://blog.logrocket.com/angular-unit-testing-tutorial-examples/
 
 ## Testing backend:
 Basic instructions and configuration:  
-https://ducmanhphan.github.io/2018-12-17-ava-test-framework/
+https://ducmanhphan.github.io/2018-12-17-ava-test-framework/  
 Promises and imports:  
 https://dimitr.im/nodejs-ava
 - Run test (run command in backend folder):
