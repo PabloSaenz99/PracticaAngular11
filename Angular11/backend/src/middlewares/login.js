@@ -5,7 +5,7 @@ const isLoggedIn = (req, res, next) => {
         const cookie = req.cookies.token;
         if (!cookie) {
             console.log("You need to login");
-            throw new err.BadRequest('You must be logged in');    //Uncomment when cookies works
+            throw new err.BadRequest('You must be logged in');
         }
     }
     next();

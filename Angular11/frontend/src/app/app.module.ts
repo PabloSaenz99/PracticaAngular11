@@ -40,7 +40,7 @@ import { TokenInterceptor } from './services/auth-guard/token.interceptor';
     BrowserModule,
     BrowserAnimationsModule,  
     ToastrModule.forRoot({
-      timeOut: 1500,
+      timeOut: 2500,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     })

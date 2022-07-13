@@ -5,7 +5,6 @@ const app = require('../server');
 const server = require('../index');
 const request = supertest(app);
 
-const User = require("../src/controllers/user.controller");
 const {connectDB, disconnectDB} = require('./configure-test');
 
 //test.only() runs only this test
