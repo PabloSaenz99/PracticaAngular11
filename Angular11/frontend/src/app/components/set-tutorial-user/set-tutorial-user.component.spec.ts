@@ -4,6 +4,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 
 import { SetTutorialUserComponent } from './set-tutorial-user.component';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { ToastInjector, ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('SetTutorialUser', () => {
   let component: SetTutorialUserComponent;
@@ -11,8 +13,8 @@ describe('SetTutorialUser', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule], 
-      providers: [SetTutorialUserComponent],
+      imports: [HttpClientTestingModule, FormsModule, ToastrModule.forRoot()], 
+      providers: [SetTutorialUserComponent, NotificationService],
       declarations: [ AppComponent, SetTutorialUserComponent ]
     })
     .compileComponents();

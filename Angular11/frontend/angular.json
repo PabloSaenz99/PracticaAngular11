@@ -98,6 +98,14 @@
               "src/styles.css"
             ],
             "scripts": []
+          },
+          //sobra esto de abajo
+          "configurations": {
+            "ci": {
+              "progress": false,
+              "watch": false,
+              "browsers": "ChromeHeadless"
+            }
           }
         }
       }
