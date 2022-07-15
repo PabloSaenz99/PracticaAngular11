@@ -48,3 +48,6 @@ Thumbs.db
 
 #database
 Angular11/db/
+
+#env
+Angular11/backend/.env

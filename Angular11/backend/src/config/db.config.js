@@ -1,5 +1,23 @@
+/*Create new user role:
+https://www.mongodb.com/docs/manual/reference/method/db.createUser/
+https://www.mongodb.com/docs/manual/reference/built-in-roles/
+
+Commands in terminal:
+mongo
+use admin
+db.createUser( { user: "myuser", pwd: "password", roles: ["readWrite"] })
+*/
+const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require("mongoose");
-const url = "mongodb://database:27017/auxdb";
+const url = `mongodb://database:27017/${process.env.DB_NAME}`;
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  authSource: process.env.DB_AUTHSOURCE,
+  user: process.env.DB_USER_NAME,
+  pass: process.env.DB_USER_PASS
+}
 
 mongoose.Promise = global.Promise;
 const db = {};
@@ -11,10 +29,7 @@ db.users = require("../models/user.model.js")(mongoose);
 if(process.env.TEST !== "test") {
   //Put here environment variable
   db.mongoose
-    .connect(db.url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+    .connect(db.url, options)
     .then(() => {
       console.log("Connected to the database!");
     })
@@ -23,13 +38,14 @@ if(process.env.TEST !== "test") {
       process.exit();
     });
 
-    emptyDataBase();
+    //emptyDataBase();
 }
 
 //Add a new user if the database is empty
 async function emptyDataBase(){
   var res = await db.users.find({});
   if(res.length === 0){
+    console.log("Adding new user");
     //Insert new user
     const user = new db.users({
       name: "User1",
