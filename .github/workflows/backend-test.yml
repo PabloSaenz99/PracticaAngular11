@@ -2,7 +2,7 @@ name: AVA backend test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
     inputs: {}
 
