@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const url = "mongodb://database:27017";
+const url = "mongodb://database:27017/auxdb";
 
 mongoose.Promise = global.Promise;
 const db = {};

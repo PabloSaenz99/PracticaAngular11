@@ -31,7 +31,7 @@ function tokenGetter() {
 }
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
-      tokenGetter: tokenGetter
+    tokenGetter: tokenGetter
   }
 };
 
