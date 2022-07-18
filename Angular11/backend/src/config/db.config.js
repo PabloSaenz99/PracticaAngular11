@@ -4,9 +4,9 @@ https://www.mongodb.com/docs/manual/reference/built-in-roles/
 
 Commands in terminal:
 mongo
-use admin
+use admin 
 db.createUser( { user: "myuser", pwd: "password", roles: ["readWrite"] })
-*/
+*/ 
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require("mongoose");
@@ -15,8 +15,8 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   authSource: process.env.DB_AUTHSOURCE,
-  user: process.env.DB_USER_NAME,
-  pass: process.env.DB_USER_PASS
+  user: process.env.DB_USER_DEFAULT_NAME,
+  pass: process.env.DB_USER_DEFAULT_PASS
 }
 
 mongoose.Promise = global.Promise;
