@@ -1,0 +1,19 @@
+# stage1 as builder
+#https://medium.com/bb-tutorials-and-thoughts/how-to-serve-angular-application-with-nginx-and-docker-3af45be5b854
+#docker rm angular11_nginx_1
+FROM nginx:alpine
+
+#!/bin/sh
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+RUN mkdir -p /www/Angular11/
+
+#Not used because the volume is setted in the compose
+#COPY ./frontend /www/Angular11
+
+# Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
+
+EXPOSE 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

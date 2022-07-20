@@ -10,7 +10,7 @@ db.createUser( { user: "myuser", pwd: "password", roles: ["readWrite"] })
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require("mongoose");
-const url = `mongodb://database:27017/${process.env.DB_NAME}`;
+const url = `mongodb://database:27017/${process.env.MONGO_INITDB_DATABASE}`;
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,

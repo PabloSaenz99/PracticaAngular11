@@ -16,7 +16,7 @@ services:
   express: #name of the second service (back)
     build: backend # specify the directory of the Dockerfile
     ports:
-      - "3000:3000" #specify ports forewarding
+      - "3000:3000" #specify ports forwarding
     depends_on:
       - "database" #starts after database service
     volumes:
@@ -33,3 +33,12 @@ services:
       - "express" #starts after express service
     volumes:
       - ./frontend:/frontend # this will enable changes made to the angular app reflect in the container
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - "angular"
+    volumes:
+      - ./frontend:/www/Angular11/
