@@ -1,12 +1,10 @@
 <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search by title"
-          [(ngModel)]="title"
-        />
+        <mat-form-field appearance="fill">
+          <mat-label>Search by title</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="titleField">
+        </mat-form-field>
         <div class="input-group-append">
           <button mat-raised-button color color="primary" (click)="searchTitle()">Search</button>
         </div>

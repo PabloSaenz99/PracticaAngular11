@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -8,8 +9,12 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
-  today = new Date().toISOString().slice(0, 10);  
-  user = new User();
+  emailField = new FormControl('', [Validators.required, Validators.email]);
+  nameField = new FormControl('');
+  passwordField = new FormControl('');
+  birthdayField = new FormControl('');
+  hidePasswordField = true;
+  today = new Date().toISOString().slice(0, 10);
   submitted = false;
 
   constructor(private userService: UserService) { }
@@ -17,11 +22,13 @@ export class AddUserComponent implements OnInit {
   
   saveUser(): void {
     const data = {
-      email: this.user.email,
-      name: this.user.name,
-      password: this.user.password,
-      birthday: this.user.birthday
+      email: this.emailField.value,
+      name: this.nameField.value,
+      password: this.passwordField.value,
+      birthday: this.birthdayField.value
     };
+    console.log(data);
+    
     this.userService.create(data)
       .subscribe(
         response => {
@@ -35,6 +42,12 @@ export class AddUserComponent implements OnInit {
 
   newUser(): void {
     this.submitted = false;
-    this.user = new User();
+  }
+
+  getErrorMessage(): String {
+    if (this.emailField.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.emailField.hasError('email') ? 'Not a valid email' : '';
   }
 }

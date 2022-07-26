@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NotificationMsg, NotificationType } from 'src/app/models/notification';
 import { Tutorial } from 'src/app/models/tutorial.model';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -12,7 +13,7 @@ export class TutorialsListComponent implements OnInit{
   tutorials?: Tutorial[];
   currentTutorial?: Tutorial;
   currentIndex = -1;
-  title = '';
+  titleField = new FormControl();
   constructor(private tutorialService: TutorialService,
     private notificationService: NotificationService) { }
   ngOnInit(): void {
@@ -50,7 +51,7 @@ export class TutorialsListComponent implements OnInit{
         });
   }
   searchTitle(): void {
-    this.tutorialService.findByTitle(this.title)
+    this.tutorialService.findByTitle(this.titleField.value)
       .subscribe(
         data => {
           this.tutorials = data;

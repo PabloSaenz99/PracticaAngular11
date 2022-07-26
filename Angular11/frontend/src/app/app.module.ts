@@ -9,7 +9,7 @@ import { TutorialsListComponent } from './components/tutorials-list/tutorials-li
 import { SetTutorialUserComponent } from './components/set-tutorial-user/set-tutorial-user.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,11 @@ import { ErrorInterceptor } from './error.interceptor';
 import { TokenInterceptor } from './services/auth-guard/token.interceptor';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon'
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -37,10 +41,15 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     //Material
     MatButtonModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     //Used for toast messages:
     BrowserModule,
     BrowserAnimationsModule,  
@@ -51,6 +60,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     })
   ],
   providers: [
+    MatDatepickerModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

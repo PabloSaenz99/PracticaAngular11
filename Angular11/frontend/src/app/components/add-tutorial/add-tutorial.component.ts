@@ -8,7 +8,8 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./add-tutorial.component.css']
 })
 export class AddTutorialComponent implements OnInit{
-  tutorial = new Tutorial();
+  titleField = new FormControl('');
+  descriptionField = new FormControl();
   submitted = false;
 
   constructor(private tutorialService: TutorialService) { }
@@ -17,8 +18,8 @@ export class AddTutorialComponent implements OnInit{
   
   saveTutorial(): void {
     const data = {
-      title: this.tutorial.title,
-      description: this.tutorial.description
+      title: this.titleField.value,
+      description: this.descriptionField.value
     };
     this.tutorialService.create(data)
       .subscribe(
@@ -32,6 +33,5 @@ export class AddTutorialComponent implements OnInit{
   }
   newTutorial(): void {
     this.submitted = false;
-    this.tutorial = new Tutorial();
   }
 }

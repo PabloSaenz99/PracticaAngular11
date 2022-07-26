@@ -2,6 +2,12 @@
     <div class="submit-form">
       <div *ngIf="!submitted">
         <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="emailField" required>
+            <mat-error *ngIf="emailField.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <!--
           <label for="email">Email</label>
           <input
             type="text"
@@ -11,37 +17,32 @@
             [(ngModel)]="user.email"
             name="email"
           />
+          -->
         </div>
         <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            class="form-control"
-            id="name"
-            required
-            [(ngModel)]="user.name"
-            name="name"
-          />
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Placeholder" [formControl]="nameField">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
         </div>
         <div class="form-group">
-          <label for="name">Password</label>
-          <input type ="password"
-            class="form-control"
-            id="name"
-            required
-            [(ngModel)]="user.password"
-            name="name"
-          />
+          <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hidePasswordField ? 'password' : 'text'" [formControl]="passwordField">
+            <button mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
+              <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
         </div>
         <div>
-          <label>Birthday</label>
-          <input type="date" 
-            id="date"
-            name="date"
-            value="1970-07-22"
-            min="1900-01-01"
-            max = "{{this.today}}"
-            required
-            [(ngModel)]='user.birthday'>
+          <mat-form-field color="accent" appearance="fill">
+            <mat-label>Select your birthday</mat-label>
+            <input matInput [matDatepicker]="picker2" [formControl]="birthdayField">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+          </mat-form-field>
         </div>
         <button mat-raised-button color color="primary"  (click)="saveUser()">Submit</button>
       </div>

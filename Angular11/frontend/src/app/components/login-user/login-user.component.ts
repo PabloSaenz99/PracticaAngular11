@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NotificationType } from 'src/app/models/notification';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-user',
@@ -11,15 +11,17 @@ import { NotificationType } from 'src/app/models/notification';
   styleUrls: ['./login-user.component.css']
 })
 export class LoginUserComponent implements OnInit {
-  user = new User();
+  emailField = new FormControl('', [Validators.required, Validators.email]);
+  passwordField = new FormControl('');
+  hidePasswordField = true;
 
   constructor(private userService: UserService, private router: Router, private notificationService: NotificationService) { }
   ngOnInit(): void {}
 
   loginUser(): void{
     const data = {
-      email: this.user.email,
-      password: this.user.password
+      email: this.emailField.value,
+      password: this.passwordField.value
     };
     this.userService.login(data).subscribe(
       res => {
@@ -41,5 +43,12 @@ export class LoginUserComponent implements OnInit {
       error => {           
         console.log(error);
       });
+  }
+
+  getErrorMessage(): String {
+    if (this.emailField.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.emailField.hasError('email') ? 'Not a valid email' : '';
   }
 }
