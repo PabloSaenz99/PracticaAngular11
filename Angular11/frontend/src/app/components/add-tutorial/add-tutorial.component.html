@@ -22,11 +22,11 @@
             name="description"
           />
         </div>
-        <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+        <button mat-raised-button color="primary" (click)="saveTutorial()">Submit</button>
       </div>
       <div *ngIf="submitted">
         <h4>Tutorial was submitted successfully!</h4>
-        <button class="btn btn-success" (click)="newTutorial()">Add</button>
+        <button mat-raised-button color color="primary" (click)="newTutorial()">Add</button>
       </div>
     </div>
   </div>

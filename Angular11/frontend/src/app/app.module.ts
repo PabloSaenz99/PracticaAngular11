@@ -17,6 +17,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptor } from './error.interceptor';
 import { TokenInterceptor } from './services/auth-guard/token.interceptor';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { TokenInterceptor } from './services/auth-guard/token.interceptor';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-
+    //Material
+    MatButtonModule,
+    MatFormFieldModule,
     //Used for toast messages:
     BrowserModule,
     BrowserAnimationsModule,  
@@ -57,6 +62,7 @@ import { TokenInterceptor } from './services/auth-guard/token.interceptor';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

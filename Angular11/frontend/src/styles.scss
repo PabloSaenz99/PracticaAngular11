@@ -1,9 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-    background-color: #22AAA1;
-    /*max-width: fit-content;
-    margin: auto;*/
-}
+/*
+https://material.angular.io/guide/getting-started
+https://material.angular.io/components/categories
+https://tomastrajan.medium.com/the-complete-guide-to-angular-material-themes-4d165a9d24d1
+*/
+
+@import '~@angular/material/theming';
+
+@include mat-core();
 
 p {
     font-family: verdana;
@@ -42,3 +45,5 @@ a:hover {color:darkcyan;}   /* Mouse over link */
 input{
     background-color: honeydew;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

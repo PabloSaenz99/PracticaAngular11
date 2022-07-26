@@ -6,6 +6,11 @@ Commands in terminal:
 mongo
 use admin 
 db.createUser( { user: "myuser", pwd: "password", roles: ["readWrite"] })
+
+Database
+db.createUser( { user: "user", pwd: "userpass1", roles: ["readWrite"] })
+db.createUser( { user: "user", pwd: "userpass1", roles: [{ role: "read", db: "auxdb" }] })
+db.dropUser("user")
 */ 
 const dotenv = require('dotenv');
 dotenv.config();
