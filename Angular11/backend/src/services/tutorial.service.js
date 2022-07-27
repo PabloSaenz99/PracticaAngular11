@@ -10,6 +10,7 @@ async function createTutorial(body) {
     const tutorial = new Tutorial({
         title: body.title,
         description: body.description,
+        images: body.images,
         published: body.published ? req.body.published : false
     });
     return await tutorial.save(tutorial);

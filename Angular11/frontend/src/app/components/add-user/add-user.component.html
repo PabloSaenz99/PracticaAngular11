@@ -1,55 +1,53 @@
-<div>
-    <div class="submit-form">
-      <div *ngIf="!submitted">
-        <div class="form-group">
-          <mat-form-field appearance="fill">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="emailField" required>
-            <mat-error *ngIf="emailField.invalid">{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
-          <!--
-          <label for="email">Email</label>
-          <input
-            type="text"
-            class="form-control"
-            id="email"
-            required
-            [(ngModel)]="user.email"
-            name="email"
-          />
-          -->
-        </div>
-        <div class="form-group">
-          <mat-form-field appearance="fill">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Placeholder" [formControl]="nameField">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field appearance="fill">
-            <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hidePasswordField ? 'password' : 'text'" [formControl]="passwordField">
-            <button mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
-              <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field color="accent" appearance="fill">
-            <mat-label>Select your birthday</mat-label>
-            <input matInput [matDatepicker]="picker2" [formControl]="birthdayField">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2 color="primary"></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <button mat-raised-button color color="primary"  (click)="saveUser()">Submit</button>
-      </div>
-      <div *ngIf="submitted">
-        <h4>User was submitted successfully!</h4>
-        <button mat-raised-button color color="primary" (click)="newUser()">Add</button>
-      </div>
+<div class="submit-form">
+  <div *ngIf="!submitted">
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" [formControl]="emailField" required>
+        <mat-error *ngIf="emailField.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <!--
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        required
+        [(ngModel)]="user.email"
+        name="email"
+      />
+      -->
     </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" [formControl]="nameField">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hidePasswordField ? 'password' : 'text'" [formControl]="passwordField">
+        <button mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
+          <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field color="accent" appearance="fill">
+        <mat-label>Select your birthday</mat-label>
+        <input matInput [matDatepicker]="picker2" [formControl]="birthdayField">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color color="primary"  (click)="saveUser()">Submit</button>
   </div>
+  <div *ngIf="submitted">
+    <h4>User was submitted successfully!</h4>
+    <button mat-raised-button color color="primary" (click)="newUser()">Add</button>
+  </div>
+</div>
   

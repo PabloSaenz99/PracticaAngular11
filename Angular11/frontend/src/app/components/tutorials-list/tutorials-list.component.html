@@ -12,38 +12,31 @@
     </div>
     <div class="col-md-6">
       <h4>Tutorials List</h4>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          *ngFor="let tutorial of tutorials; let i = index"
-          [class.active]="i == currentIndex"
-          (click)="setActiveTutorial(tutorial, i)"
-        >
-          {{ tutorial.title }}
-        </li>
-      </ul>
-      <button mat-raised-button color color="primary" (click)="removeAllTutorials()">
+      <mat-card 
+        *ngFor="let tutorial of tutorials; let i = index"
+        (click)="setActiveTutorial(tutorial, i)"
+      > 
+        <mat-card-title>{{tutorial.title}}</mat-card-title>
+        <mat-card-content>{{tutorial.description}}</mat-card-content>
+      </mat-card>
+      <button mat-raised-button color="primary" (click)="removeAllTutorials()">
         Remove All
       </button>
     </div>
     <div class="col-md-6">
-      <div *ngIf="currentTutorial">
-        <h4>Tutorial</h4>
-        <div>
-          <label><strong>Title:</strong></label> {{ currentTutorial.title }}
+      <mat-card *ngIf="currentTutorial">
+        <mat-card-title-group>Current tutorial</mat-card-title-group>
+        <mat-card-title>Title: {{currentTutorial.title}}</mat-card-title>
+        <mat-card-content>Description: {{ currentTutorial.description }}</mat-card-content>        
+        <mat-card-subtitle>Status: {{ currentTutorial.published ? "Published" : "Pending" }}</mat-card-subtitle>
+        <div *ngIf="currentTutorial.images">
+          <mat-card-subtitle>Images:</mat-card-subtitle>
+          <div *ngFor="let image of currentTutorial.images">
+            <img  mat-card-image src="{{image}}">
+          </div>
         </div>
-        <div>
-          <label><strong>Description:</strong></label>
-          {{ currentTutorial.description }}
-        </div>
-        <div>
-          <label><strong>Status:</strong></label>
-          {{ currentTutorial.published ? "Published" : "Pending" }}
-        </div>
-        <a class="badge badge-warning" routerLink="/tutorials/{{ currentTutorial.id }}">
-          Edit
-        </a>
-      </div>
+        <button mat-raised-button color="primary" routerLink="/tutorials/{{currentTutorial._id}}">Edit</button>
+      </mat-card>
       <div *ngIf="!currentTutorial">
         <br />
         <p>Please click on a Tutorial...</p>

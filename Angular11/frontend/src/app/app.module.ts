@@ -21,7 +21,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon'
-import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider'; 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -50,6 +52,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatCardModule,
+    MatDividerModule,
     //Used for toast messages:
     BrowserModule,
     BrowserAnimationsModule,  

@@ -51,3 +51,6 @@ Angular11/db/
 
 #env
 Angular11/backend/.env
+
+#images folder
+Angular11/imgs/

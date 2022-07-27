@@ -8,8 +8,11 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./add-tutorial.component.css']
 })
 export class AddTutorialComponent implements OnInit{
+  images = new Array<string>();
+  actualImage = "";
   titleField = new FormControl('');
   descriptionField = new FormControl();
+  imageField = new FormControl()
   submitted = false;
 
   constructor(private tutorialService: TutorialService) { }
@@ -17,11 +20,12 @@ export class AddTutorialComponent implements OnInit{
   ngOnInit(): void {}
   
   saveTutorial(): void {
-    const data = {
-      title: this.titleField.value,
-      description: this.descriptionField.value
-    };
-    this.tutorialService.create(data)
+    var tut = new Tutorial() 
+    tut.title = this.titleField.value !== null ? this.titleField.value: "";
+    tut.description = this.descriptionField.value !== null ? this.descriptionField.value: "";
+    tut.images = this.images;
+    
+    this.tutorialService.create(tut)
       .subscribe(
         response => {
           console.log(response);
@@ -33,5 +37,12 @@ export class AddTutorialComponent implements OnInit{
   }
   newTutorial(): void {
     this.submitted = false;
+  }
+
+  addImage(): void {
+    if(this.actualImage !== "") {      
+      this.images.push(this.actualImage);
+      this.imageField.reset();      
+    }
   }
 }
