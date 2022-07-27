@@ -42,7 +42,7 @@ export class AddTutorialComponent implements OnInit{
   addImage(): void {
     if(this.actualImage !== "") {      
       this.images.push(this.actualImage);
-      this.imageField.reset();      
+      this.imageField.setValue("");
     }
   }
 }

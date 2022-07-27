@@ -53,9 +53,4 @@ describe('AddTutorialComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('Should create new tutorial', () => {
-    component.newTutorial();
-    expect(component.tutorial).toBeTruthy()
-  });
 });

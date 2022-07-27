@@ -8,7 +8,7 @@ services:
       - "27017:27017" # specify port forwarding
     volumes:
       - ./db:/data/db
-      - ./initdb/:/docker-entrypoint-initdb.d/:ro
+      - ./initdb/:/docker-entrypoint-initdb.d/:ro #Stop with docker container ls and then docker container stop <id>
     logging:
       driver: none
     env_file: ./backend/.env
@@ -21,6 +21,7 @@ services:
       - "database" #starts after database service
     volumes:
       - ./backend:/backend
+      - ./imgs:/imgs
     links:
       - database
 

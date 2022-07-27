@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormControl, FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 //import { normalize } from 'path';
 //https://blog.logrocket.com/angular-unit-testing-tutorial-examples/
@@ -41,15 +41,15 @@ describe('AddUserComponent', () => {
   it("should have not empty fields", () => {            //Check there are not empty fields when the button is clicked
     fixture.detectChanges();
 
-    component.user.email = "email@email.com";
-    component.user.name = "name1";
+    component.emailField.setValue("email@email.com");
+    component.nameField.setValue("name1");
 
     fixture.debugElement
       .query(By.css(".btn-success"))                    //Search element by css
       .triggerEventHandler('click', null);              //Click the button
     
-    expect(component.user.email).not.toEqual("");
-    expect(component.user.name).not.toEqual("");
+    expect(component.emailField.value).not.toEqual("");
+    expect(component.nameField.value).not.toEqual("");
     /*
     const email = fixture.debugElement.nativeElement.querySelector("#email"); //Search element with email
     expect(email.innerHTML).not.toContain("");                                //Check its not empty
