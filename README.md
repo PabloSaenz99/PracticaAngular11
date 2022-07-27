@@ -30,9 +30,13 @@ docker-compose up [optional]--build
 ```
 ### Docker compose options:
 - Volumes:
+```bash
 local-dir:docker-dir:[optional]other-options (such read only)
+```
 - Environment file:
+```bash
 env_file: path-to-env-file
+```
 
 ## Testing frontend:
 https://shashankvivek-7.medium.com/testing-basic-html-elements-using-karma-jasmine-in-angular-fd5e4ac62d78  
