@@ -50,7 +50,7 @@ Thumbs.db
 Angular11/db/
 
 #env
-Angular11/backend/.env
+Angular11/.env
 
 #images folder
 Angular11/imgs/
