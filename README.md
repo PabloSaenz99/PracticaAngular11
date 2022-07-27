@@ -8,6 +8,14 @@ docker build -t image_tag:tag directory-with-dockerfile
 ```bash
 docker run -d --name container-name -p host-port:final-port image-name
 ```
+- List all containers:
+```bash
+docker container ls
+```
+- Start/Stop a container:
+```bash
+docker start/stop [ID]
+```
 - Show all images:
 ```bash
 docker images (-a)
@@ -18,8 +26,13 @@ docker system prune -a
 ```
 - Build all dockers from yml:
 ```bash
-docker-compose up --build
+docker-compose up [optional]--build
 ```
+### Docker compose options:
+- Volumes:
+local-dir:docker-dir:[optional]other-options (such read only)
+- Environment file:
+env_file: path-to-env-file
 
 ## Testing frontend:
 https://shashankvivek-7.medium.com/testing-basic-html-elements-using-karma-jasmine-in-angular-fd5e4ac62d78  
