@@ -29,11 +29,9 @@
         <mat-card-title>Title: {{currentTutorial.title}}</mat-card-title>
         <mat-card-content>Description: {{ currentTutorial.description }}</mat-card-content>        
         <mat-card-subtitle>Status: {{ currentTutorial.published ? "Published" : "Pending" }}</mat-card-subtitle>
-        <div *ngIf="currentTutorial.images">
+        <div *ngIf="currentTutorial.images.length !== 0">
           <mat-card-subtitle>Images:</mat-card-subtitle>
-          <div *ngFor="let image of currentTutorial.images">
-            <img  mat-card-image src="{{image}}">
-          </div>
+            <img *ngFor="let image of currentTutorial.images" mat-card-xl-image src="{{image}}">
         </div>
         <button mat-raised-button color="primary" routerLink="/tutorials/{{currentTutorial._id}}">Edit</button>
       </mat-card>

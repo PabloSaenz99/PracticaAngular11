@@ -36,7 +36,7 @@ if(process.env.TEST !== "test") {
   db.mongoose
     .connect(db.url, options)
     .then(() => {
-      console.log("Connected to the database!");
+      console.log(`Connected to the database! ${db.url}`);
     })
     .catch(err => {
       console.log("Cannot connect to the database!", err);

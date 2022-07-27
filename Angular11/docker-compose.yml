@@ -8,10 +8,10 @@ services:
       - "27017:27017" # specify port forwarding
     volumes:
       - ./db:/data/db
-      - ./initdb/:/docker-entrypoint-initdb.d/:ro #Stop with docker container ls and then docker container stop <id>
-    logging:
-      driver: none
-    env_file: ./backend/.env
+      - ./initdb:/docker-entrypoint-initdb.d:ro #Stop with docker container ls and then docker container stop <id>
+    #Disable logs
+    command: mongod --quiet --logpath /dev/null
+    env_file: .env
       
   express: #name of the second service (back)
     build: backend # specify the directory of the Dockerfile
@@ -21,9 +21,10 @@ services:
       - "database" #starts after database service
     volumes:
       - ./backend:/backend
-      - ./imgs:/imgs
     links:
       - database
+    env_file:
+      - .env
 
   angular: # name of the third service (front)
     build: ./frontend # specify the directory of the Dockerfile
@@ -34,6 +35,7 @@ services:
       - "express" #starts after express service
     volumes:
       - ./frontend:/frontend # this will enable changes made to the angular app reflect in the container
+      - ./imgs:/imgs #Redirect imgs local folder to imgs docker folder
 
   nginx:
     build: ./nginx
