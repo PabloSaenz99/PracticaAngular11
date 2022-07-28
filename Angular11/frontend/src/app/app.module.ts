@@ -26,6 +26,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider'; 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
+import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 
     AddUserComponent,
     SetTutorialUserComponent,
-    LoginUserComponent
+    LoginUserComponent,
+
+    MatDialogComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +58,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatCardModule,
     MatDividerModule,
+    MatDialogModule,
     //Used for toast messages:
     BrowserModule,
     BrowserAnimationsModule,  
@@ -65,6 +70,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   ],
   providers: [
     MatDatepickerModule,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

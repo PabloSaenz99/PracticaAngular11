@@ -27,13 +27,15 @@
       <mat-card *ngIf="currentTutorial">
         <mat-card-title-group>Current tutorial</mat-card-title-group>
         <mat-card-title>Title: {{currentTutorial.title}}</mat-card-title>
-        <mat-card-content>Description: {{ currentTutorial.description }}</mat-card-content>        
-        <mat-card-subtitle>Status: {{ currentTutorial.published ? "Published" : "Pending" }}</mat-card-subtitle>
+        <mat-card-content>Description: {{ currentTutorial.description }}</mat-card-content>       
+        <mat-card-subtitle>Status: {{ currentTutorial.published ? "Published" : "Pending" }}
+          <button *ngIf="currentTutorial.published === false" mat-raised-button color="primary" (click)="publishTutorial(true)">Publish</button>
+        </mat-card-subtitle>
         <div *ngIf="currentTutorial.images.length !== 0">
           <mat-card-subtitle>Images:</mat-card-subtitle>
             <img *ngFor="let image of currentTutorial.images" mat-card-xl-image src="{{image}}">
         </div>
-        <button mat-raised-button color="primary" routerLink="/tutorials/{{currentTutorial._id}}">Edit</button>
+        <button mat-raised-button color="primary" (click)="editTutorial()">Edit</button>
       </mat-card>
       <div *ngIf="!currentTutorial">
         <br />
