@@ -7,7 +7,7 @@ exports.create = async (req, res, next) => {
 
 exports.login = async (req, res) => {
   var result = await userService.loginUser(req.body);
-  res.cookie('token', result.token, { httpOnly: true, secure: true, maxAge: 604800, sameSite:'none' });
+  res.cookie('token', result.token, { httpOnly: true, secure: true, maxAge: 604863000, sameSite:'none' });
   res.send(true); //Send true used in front for verify login
 };
 

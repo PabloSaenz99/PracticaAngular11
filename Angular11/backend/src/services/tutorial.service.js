@@ -4,10 +4,11 @@ const Tutorial = db.tutorials;
 const errors = require("../utils/errors");
 
 async function createTutorial(body) {
-    if (!body.title || !body.description) {
+    if (!body.title || !body.description || body.creatorID) {
         throw new errors.NotFound(errors.errorType.FillAllFields);
     }
     const tutorial = new Tutorial({
+        creatorUserID: body.creator,
         title: body.title,
         description: body.description,
         images: body.images,
@@ -17,9 +18,19 @@ async function createTutorial(body) {
 }
 
 async function findAllTutorials(body) {
-    const title = body.title;
-    var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
-    return await Tutorial.find(condition);
+    if(body.userID) {
+        const userID = body.userID;
+        return await Tutorial.find( {creatorUserID: userID});
+    }   
+    else {
+        const title = body.title;
+        var condition;
+        if(title)
+            condition = { $and: [{title: { $regex: new RegExp(title), $options: "i" }}, {published: true}]};
+        else
+            condition = {published: true};
+        return await Tutorial.find(condition);
+    }
 }
 
 async function findOneTutorial(params) {

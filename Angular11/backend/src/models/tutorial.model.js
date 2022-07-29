@@ -3,6 +3,7 @@ module.exports = mongoose => {
     "tutorial",
     mongoose.Schema(
       {
+        creatorUserID: {type: mongoose.Types.ObjectId, ref: 'user'},
         title: String,
         description: String,
         images: [],
