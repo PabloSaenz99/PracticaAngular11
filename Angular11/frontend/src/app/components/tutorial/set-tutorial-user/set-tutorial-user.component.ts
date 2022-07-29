@@ -38,7 +38,7 @@ export class SetTutorialUserComponent implements OnInit {
   }
 
   retrieveTutorials(): void {
-    this.tutorialService.getAll()
+    this.tutorialService.findAllPublished()
       .subscribe(
         data => {
           this.tutorials = data;

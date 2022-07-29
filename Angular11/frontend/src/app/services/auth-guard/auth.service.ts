@@ -29,9 +29,8 @@ export class AuthService {
     
     public async isAuthenticated(): Promise<boolean> {
         const token = await this.getToken();
-        if (token !== "")
+        if (token === "")
             return false;
-
         else
             return true;
     }

@@ -16,16 +16,15 @@ export class TutorialsListComponent implements OnInit{
   currentTutorial?: Tutorial;
   currentIndex = -1;
   titleField = new FormControl();
-  constructor(private tutorialService: TutorialService,
+  constructor(
+    private tutorialService: TutorialService,
     private notificationService: NotificationService, 
     private dialog: MatDialogComponent,
-    private router: Router,) { }
+    private router: Router) { }
 
-  ngOnInit(): void {
-    this.retrieveTutorials();
-  }
+  ngOnInit(): void {this.retrieveTutorials();}
   retrieveTutorials(): void {
-    this.tutorialService.getAll()
+    this.tutorialService.findAllPublished()
       .subscribe(
         data => {
           this.tutorials = data;

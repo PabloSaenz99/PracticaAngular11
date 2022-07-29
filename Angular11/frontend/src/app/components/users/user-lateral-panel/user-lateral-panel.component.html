@@ -3,7 +3,7 @@
         <mat-card-title>{{user.nickName}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
     </mat-card>
-    <button mat-raised-button color color="primary">Show all tutorials</button>
+    <button mat-raised-button color color="primary" (click)="findAllUserTutorials()">Show all tutorials</button>
     <button mat-raised-button color color="primary">Edit profile</button>
 </div>
 <div class="sidebar" *ngIf="!isLoggedIn">

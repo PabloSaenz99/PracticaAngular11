@@ -12,16 +12,24 @@ export class TutorialService {
   baseUrl = environment.url + environment.port + '/api/tutorials'; //'http://localhost:3000/api/tutorials'
 
   constructor(private http: HttpClient) { }
-  getAll(): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(`${this.baseUrl}`);
+  
+  findAllPublished(): Observable<Tutorial[]> {
+    return this.http.get<Tutorial[]>(`${this.baseUrl}/published`);
+  }
+  findByTitle(title: string): Observable<Tutorial[]> {    
+    return this.http.get<Tutorial[]>(`${this.baseUrl}/published?title=${title}`);
+  }
+  findById(id: string): Observable<Tutorial> {
+    return this.http.get<Tutorial>(`${this.baseUrl}/id?tutorialId=${id}`);
+  }
+  findByUser(id: string): Observable<Tutorial[]> {
+    return this.http.get<Tutorial[]>(`${this.baseUrl}/id?userId=${id}`);
   }
 
   create(data: Tutorial): Observable<any> {
     return this.http.post(this.baseUrl, data);
   }
-  get(id: string): Observable<Tutorial> {
-    return this.http.get<Tutorial>(`${this.baseUrl}/id/${id}`);
-  }
+
   update(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/id/${id}`, data);
   }
@@ -30,8 +38,5 @@ export class TutorialService {
   }
   deleteAll(): Observable<any> {
     return this.http.delete(this.baseUrl);
-  }
-  findByTitle(title: string): Observable<Tutorial[]> {    
-    return this.http.get<Tutorial[]>(`${this.baseUrl}?title=${title}`);
   }
 }

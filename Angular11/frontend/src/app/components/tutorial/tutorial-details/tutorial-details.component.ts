@@ -27,7 +27,7 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   getTutorial(id: string): void {
-    this.tutorialService.get(id)
+    this.tutorialService.findById(id)
       .subscribe(
         data => {
           this.currentTutorial = data;
