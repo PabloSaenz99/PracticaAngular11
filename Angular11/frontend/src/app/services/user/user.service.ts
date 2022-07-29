@@ -26,6 +26,9 @@ export class UserService {
   logout(): Observable<any> {
     return this.http.delete(`${baseUrl}/logout`);
   }
+  isLoggedIn(): Observable<string> {
+    return this.http.get<string>(`${environment.url + environment.port}/api/auth/login`);
+  }
   update(id: string, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
@@ -35,8 +38,8 @@ export class UserService {
   deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
   }
-  findByTitle(email: string): Observable<User[]> {
-    return this.http.get<User[]>(`${baseUrl}?email=${email}`);
+  findByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${baseUrl}/email/${email}`);
   }
 
   addTutorial(data: { tutorialId: string, userId: string }): Observable<any> {

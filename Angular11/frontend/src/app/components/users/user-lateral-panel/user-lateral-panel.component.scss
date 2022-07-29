@@ -1,0 +1,18 @@
+@import "../../../../styles.scss";
+
+$sidebar-width-px: 205px;
+
+.sidebar {
+    background-color: aqua;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sidebar-width-px + 20;
+    height: 100%;
+    padding: 20px 0;
+    text-align: left;
+}
+
+button {
+    width: $sidebar-width-px;
+}

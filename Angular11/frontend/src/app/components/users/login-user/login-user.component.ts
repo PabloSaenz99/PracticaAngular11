@@ -15,7 +15,7 @@ export class LoginUserComponent implements OnInit {
   passwordField = new FormControl('');
   hidePasswordField = true;
 
-  constructor(private userService: UserService, private router: Router, private notificationService: NotificationService) { }
+  constructor(private userService: UserService, private router: Router, private notificationService: NotificationService) {}
   ngOnInit(): void {}
 
   loginUser(): void{

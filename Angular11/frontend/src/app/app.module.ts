@@ -28,6 +28,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserLateralPanelComponent } from './components/users/user-lateral-panel/user-lateral-panel.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angu
     SetTutorialUserComponent,
     LoginUserComponent,
 
-    MatDialogComponent
+    MatDialogComponent,
+     UserLateralPanelComponent
   ],
   imports: [
     CommonModule,
