@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 
-import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
-import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
-import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
+import { TutorialsListComponent } from './components/tutorial/tutorials-list/tutorials-list.component';
+import { TutorialDetailsComponent } from './components/tutorial/tutorial-details/tutorial-details.component';
+import { AddTutorialComponent } from './components/tutorial/add-tutorial/add-tutorial.component';
 
-import { AddUserComponent } from './components/add-user/add-user.component';
+import { AddUserComponent } from './components/users/add-user/add-user.component';
 
-import { SetTutorialUserComponent } from './components/set-tutorial-user/set-tutorial-user.component';
+import { SetTutorialUserComponent } from './components/tutorial/set-tutorial-user/set-tutorial-user.component';
 
-import { LoginUserComponent } from './components/login-user/login-user.component';
+import { LoginUserComponent } from './components/users/login-user/login-user.component';
 import { AuthGuard } from './services/auth-guard/auth.guard';
 
 const routes: Routes = [

@@ -3,7 +3,7 @@ import { TutorialService } from 'src/app/services/tutorial/tutorial.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tutorial } from 'src/app/models/tutorial.model';
 import { FormControl } from '@angular/forms';
-import { ConfirmDialogData, MatDialogComponent } from '../mat-dialog/mat-dialog.component';
+import { ConfirmDialogData, MatDialogComponent } from '../../mat-dialog/mat-dialog.component';
 
 @Component({
   selector: 'app-tutorial-details',

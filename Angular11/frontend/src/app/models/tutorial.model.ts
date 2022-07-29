@@ -1,5 +1,6 @@
 export class Tutorial {
     _id: string;
+    creatorUSerID: string;
     title: string;
     description: string;
     published: boolean;
@@ -7,6 +8,7 @@ export class Tutorial {
 
     constructor(){
       this._id = "";
+      this.creatorUSerID = "";
       this.title = "";
       this.description ="";
       this.published = false;

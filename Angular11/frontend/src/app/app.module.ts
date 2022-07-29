@@ -3,15 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
-import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
-import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
-import { SetTutorialUserComponent } from './components/set-tutorial-user/set-tutorial-user.component';
-import { LoginUserComponent } from './components/login-user/login-user.component';
+import { AddTutorialComponent } from './components/tutorial/add-tutorial/add-tutorial.component';
+import { TutorialDetailsComponent } from './components/tutorial/tutorial-details/tutorial-details.component';
+import { TutorialsListComponent } from './components/tutorial/tutorials-list/tutorials-list.component';
+import { SetTutorialUserComponent } from './components/tutorial/set-tutorial-user/set-tutorial-user.component';
+import { LoginUserComponent } from './components/users/login-user/login-user.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AddUserComponent } from './components/add-user/add-user.component';
+import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
