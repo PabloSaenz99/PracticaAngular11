@@ -13,19 +13,17 @@ SCSS guide: https://blog.logrocket.com/the-definitive-guide-to-scss/
 
 $max-width-body-px: 700px;
 $min-width-body-px: 500px;
+$margin-px: 10px;
 
 $width-perc: 90%;
 
-$margin-px: 10px;
+$backgr-col: antiquewhite;
 
 p {
     font-size: 15px;
 }
 
 body {
-    html {
-        height: 100%;
-    }
     max-width: $max-width-body-px;
     margin: auto;
     text-align: center; /*Center horizontally*/ 

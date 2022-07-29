@@ -22,8 +22,8 @@ async function findAllTutorials(body) {
     return await Tutorial.find(condition);
 }
 
-async function findOneTutorial(body) {
-    const id = body.params.id;
+async function findOneTutorial(params) {
+    const id = params.id;
     var data = await Tutorial.findById(id);
     if(data)
         return data;
@@ -31,20 +31,19 @@ async function findOneTutorial(body) {
         throw new errors.NotFound(errors.errorType.CannotFindTutorial);
 }
 
-async function updateTutorial(req) {
-    if (!req.body) {
+async function updateTutorial(params, body) {
+    if (!params.id || !body) {
         throw new errors.BadRequest(errors.errorType.FillAllFields);
     }
-    var data = await Tutorial.findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false });
+    var data = await Tutorial.findByIdAndUpdate(params.id, body, { useFindAndModify: false });
     if(data)
         return {message: "Tutorial was updated successfully."};
     else
         throw new errors.NotFound(errors.errorType.CannotUpdateTutorial); 
 }
 
-async function deleteTutorial(body) {
-    const id = body.params.id;
-    var data = await Tutorial.findByIdAndRemove(id);
+async function deleteTutorial(params) {
+    var data = await Tutorial.findByIdAndRemove(params.id);
     if(data)
         return {message: `Tutorial was deleted successfully!`};
     else

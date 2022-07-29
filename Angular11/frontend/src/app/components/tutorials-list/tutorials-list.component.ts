@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NotificationType } from 'src/app/models/notification';
 import { Tutorial } from 'src/app/models/tutorial.model';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -17,7 +18,8 @@ export class TutorialsListComponent implements OnInit{
   titleField = new FormControl();
   constructor(private tutorialService: TutorialService,
     private notificationService: NotificationService, 
-    private dialog: MatDialogComponent) { }
+    private dialog: MatDialogComponent,
+    private router: Router,) { }
 
   ngOnInit(): void {
     this.retrieveTutorials();
@@ -44,7 +46,7 @@ export class TutorialsListComponent implements OnInit{
   removeAllTutorials(): void {
     this.dialog.openDialog(new ConfirmDialogData("Confirm your selection", "Delete all tutorials?")).subscribe(
       selection => {
-        if(selection){
+        if(selection)
           this.tutorialService.deleteAll()
             .subscribe(
               response => {
@@ -52,16 +54,12 @@ export class TutorialsListComponent implements OnInit{
                 this.refreshList();
                 this.notificationService.sendNotification("All tutorials were deleted", NotificationType.info);
               },
-              error => {
-                console.log(error);
-              });
-          }
+              error => console.log(error));
       },
-      error => {
-        console.log(error);
-      }
+      error => console.log(error)
     );      
   }
+
   searchTitle(): void {
     this.tutorialService.findByTitle(this.titleField.value)
       .subscribe(
@@ -85,13 +83,7 @@ export class TutorialsListComponent implements OnInit{
       });
   }
 
-  editTutorial(): void {  
-    this.tutorialService.get(this.currentTutorial!._id).subscribe(
-      response => {
-        console.log(response);
-      },
-      error => {        
-        console.log(error);
-      });
+  editTutorial(): void {
+    this.router.navigate([`/tutorials/${this.currentTutorial!._id}`]);
   }
 }

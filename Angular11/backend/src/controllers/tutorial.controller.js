@@ -10,15 +10,15 @@ exports.findAll = async (req, res, next) => {
 };
 // Find a single Tutorial with an id
 exports.findOne = async (req, res, next) => {
-  res.send(await tutorialService.findOneTutorial(req.body));
+  res.send(await tutorialService.findOneTutorial(req.params));
 };
 // Update a Tutorial by the id in the request
 exports.update = async (req, res, next) => {
-  res.send(await tutorialService.updateTutorial(req));
+  res.send(await tutorialService.updateTutorial(req.params, req.body));
 };
 // Delete a Tutorial with the specified id in the request
 exports.delete = async (req, res, next) => {
-  res.send(await tutorialService.deleteTutorial(req));
+  res.send(await tutorialService.deleteTutorial(req.params));
 };
 // Delete all Tutorials from the database.
 exports.deleteAll = async (req, res, next) => {

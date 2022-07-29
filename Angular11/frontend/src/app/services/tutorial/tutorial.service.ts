@@ -15,11 +15,12 @@ export class TutorialService {
   getAll(): Observable<Tutorial[]> {
     return this.http.get<Tutorial[]>(`${this.baseUrl}`);
   }
-  get(id: string): Observable<Tutorial> {
-    return this.http.get<Tutorial>(`${this.baseUrl}/id/${id}`);
-  }
+
   create(data: Tutorial): Observable<any> {
     return this.http.post(this.baseUrl, data);
+  }
+  get(id: string): Observable<Tutorial> {
+    return this.http.get<Tutorial>(`${this.baseUrl}/id/${id}`);
   }
   update(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/id/${id}`, data);
