@@ -1,24 +1,14 @@
-<div class="center">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <ul class="home-list">
-      <li class="nav-item">
-        <button mat-raised-button color color="primary" routerLink="tutorials">Tutorials</button>
-      </li>
-      <li class="nav-item">
-        <button mat-raised-button color color="primary" routerLink="addTutorial" >Add tutorial</button>
-      </li>
-      <li class="nav-item">
-        <button mat-raised-button color color="primary" routerLink="setTutorialUser">Set tutorial user</button>
-      </li>
-      <li class="nav-item">
-        <button mat-raised-button color color="primary" routerLink="addUser">Add user</button>
-      </li>
-      <li class="nav-item">
-        <button mat-raised-button color color="primary" routerLink="login">Login/Logout</button>
-      </li>
-    </ul>
-  </nav>
-</div>
-<div class=""center>
-    <router-outlet></router-outlet>
+<div class="main-div">
+  <div class="top-nav-bar">
+    <nav>
+      <button mat-raised-button color color="primary" routerLink="tutorials">Tutorials</button>
+      <button mat-raised-button color color="primary" routerLink="addTutorial" >Add tutorial</button>
+      <button mat-raised-button color color="primary" routerLink="setTutorialUser">Set tutorial user</button>
+      <button mat-raised-button color color="primary" routerLink="addUser">Add user</button>
+      <button mat-raised-button color color="primary" routerLink="login">Login/Logout</button>
+    </nav>
+  </div>
+  <div>
+      <router-outlet></router-outlet>
+  </div>
 </div>

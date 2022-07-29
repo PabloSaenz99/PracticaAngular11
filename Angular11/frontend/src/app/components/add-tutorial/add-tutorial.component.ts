@@ -5,7 +5,7 @@ import {FormControl, Validators} from '@angular/forms';
 @Component({
   selector: 'app-add-tutorial',
   templateUrl: './add-tutorial.component.html',
-  styleUrls: ['./add-tutorial.component.css']
+  styleUrls: ['./add-tutorial.component.scss']
 })
 export class AddTutorialComponent implements OnInit{
   images = new Array<string>();

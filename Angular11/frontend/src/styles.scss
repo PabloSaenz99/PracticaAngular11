@@ -3,48 +3,59 @@ https://material.angular.io/guide/getting-started
 https://material.angular.io/components/categories
 https://tomastrajan.medium.com/the-complete-guide-to-angular-material-themes-4d165a9d24d1
 https://www.positronx.io/create-angular-material-8-custom-theme/
+
+SCSS guide: https://blog.logrocket.com/the-definitive-guide-to-scss/
 */
 
 @import '~@angular/material/theming';
 
 @include mat-core();
 
+$max-width-body-px: 700px;
+$min-width-body-px: 500px;
+
+$width-perc: 90%;
+
+$margin-px: 10px;
+
 p {
-    font-family: verdana;
-    font-size: 20px;
+    font-size: 15px;
 }
 
-a:visited {color: black;}   /* Visited link    */
-a:hover {color:darkcyan;}   /* Mouse over link */
-/*
-.form-group {
-    background-color: #84CAE7;
-    border: 1px solid #136F63;
-    border-radius: 5px;
-    margin: 5px;
-    text-align: start;
-    width: min-content;
-}*/
+body {
+    html {
+        height: 100%;
+    }
+    max-width: $max-width-body-px;
+    margin: auto;
+    text-align: center; /*Center horizontally*/ 
+}
 
-.btn{
-    background-color: #84CAE7;
-    border: 1px solid #136F63;
-    border-radius: 5px;
-    margin: 5px;
+button {
+    margin: 8px !important;
+}
+
+@mixin center-ver {
+    display: flex;
+    justify-content: center;
+}
+@mixin center-hor {
+    /*
+    display: flex;
     text-align: center;
-    min-width: fit-content;
-    width: 10%;
-    line-height: 25px;
+    */
+    margin: auto;
+    width: $width-perc;
+};
+
+@mixin center-hor-ver {
+    @include center-ver();
+    @include center-hor();
 }
 
-.btn:hover {
-    background-color: #136F63;
-    color: white;
-    cursor: pointer
-  }
-
-input{
-    background-color: honeydew;
+.mat-card, .mat-form-field {
+    margin-top: $margin-px;
+    margin-right: auto;
+    margin-left: auto;
+    width: $width-perc;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -8,7 +8,7 @@ import { MatDialogComponent, ConfirmDialogData } from '../mat-dialog/mat-dialog.
 @Component({
   selector: 'app-tutorials-list',
   templateUrl: './tutorials-list.component.html',
-  styleUrls: ['./tutorials-list.component.css']
+  styleUrls: ['./tutorials-list.component.scss']
 })
 export class TutorialsListComponent implements OnInit{
   tutorials?: Tutorial[];

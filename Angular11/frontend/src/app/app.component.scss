@@ -1,0 +1,19 @@
+@use "../styles.scss";
+
+.main-div {
+    margin: none;
+    max-width: styles.$max-width-body-px;
+    background-color: antiquewhite//keep this ->azure;
+}
+
+.top-nav-bar{
+    //Center elements (vert and hor)
+    @include styles.center-hor-ver;
+   
+    background-color: black;
+    border-radius: 5px;
+    
+    height: fit-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
