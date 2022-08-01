@@ -6,11 +6,10 @@ const trycatch = fn => (req, res, next) => {
 }
 
 router.post("/", trycatch(tutorials.create));
-router.get("/", trycatch(tutorials.findAll));
 
+router.get("/id/", trycatch(tutorials.findById));
 router.get("/published/", trycatch(tutorials.findAllPublished));
 
-router.get("/id/:id", trycatch(tutorials.findOne));
 router.put("/id/:id", trycatch(tutorials.update));
 router.delete("/id/:id", trycatch(tutorials.delete));
 

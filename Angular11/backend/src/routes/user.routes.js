@@ -12,7 +12,7 @@ const trycatch = fn => (req, res, next) => {
 router.get("/", trycatch(users.findAll));
 router.get("/user-tutorials", trycatch(users.getUsersTutorials));
 
-router.get("/:email", trycatch(users.findOne));
+router.get("/email/:email", trycatch(users.findOne));
 
 router.post("/", trycatch(users.create));
 router.post("/set", trycatch(users.addTutorial));

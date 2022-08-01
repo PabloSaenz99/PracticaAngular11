@@ -4,11 +4,11 @@ const Tutorial = db.tutorials;
 const errors = require("../utils/errors");
 
 async function createTutorial(body) {
-    if (!body.title || !body.description || body.creatorID) {
+    if (!body.title || !body.description || !body.creatorUserId) {
         throw new errors.NotFound(errors.errorType.FillAllFields);
     }
     const tutorial = new Tutorial({
-        creatorUserID: body.creator,
+        creatorUserId: body.creatorUserId,
         title: body.title,
         description: body.description,
         images: body.images,
@@ -17,29 +17,27 @@ async function createTutorial(body) {
     return await tutorial.save(tutorial);
 }
 
-async function findAllTutorials(body) {
-    if(body.userID) {
-        const userID = body.userID;
-        return await Tutorial.find( {creatorUserID: userID});
-    }   
-    else {
-        const title = body.title;
-        var condition;
-        if(title)
-            condition = { $and: [{title: { $regex: new RegExp(title), $options: "i" }}, {published: true}]};
-        else
-            condition = {published: true};
-        return await Tutorial.find(condition);
-    }
+async function findAllPublished(query){
+    const title = query.title;
+    var condition;
+    if(title)
+        condition = { $and: [{title: { $regex: new RegExp(title), $options: "i" }}, {published: true}]};
+    else
+        condition = {published: true};
+    return await Tutorial.find(condition);
 }
 
-async function findOneTutorial(params) {
-    const id = params.id;
-    var data = await Tutorial.findById(id);
-    if(data)
-        return data;
-    else
-        throw new errors.NotFound(errors.errorType.CannotFindTutorial);
+async function findById(query) {
+    if(query.tutorialId){
+        var data = await Tutorial.findById(query.tutorialId);
+        if(data)
+            return data;
+        else
+            throw new errors.NotFound(errors.errorType.CannotFindTutorial);
+    }
+    else if(query.userId) {
+        return await Tutorial.find( {creatorUserId: query.userId});
+    }
 }
 
 async function updateTutorial(params, body) {
@@ -66,12 +64,8 @@ async function deleteAllTutorials(){
     return {message: `${data.deletedCount} Tutorials were deleted successfully!`};
 }
 
-async function findAllPublished(){
-    return await Tutorial.find({ published: true });
-}
-
 module.exports = {
-    createTutorial, findAllTutorials,
-    findOneTutorial, updateTutorial,
+    createTutorial,
+    findById, updateTutorial,
     deleteTutorial, deleteAllTutorials,
     findAllPublished}

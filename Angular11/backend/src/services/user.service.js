@@ -36,7 +36,7 @@ async function loginUser(body) {
     if (user.hash !== createHash(body.password, user.salt))
         throw new errors.BadRequest(errors.errorType.IncorrectPassword);
 	
-    const token = jwt.sign({_id: user._id}, 'secretkey');
+    const token = jwt.sign({email: user.email}, 'secretkey');
     return {token, "name": user.name};
 }
 

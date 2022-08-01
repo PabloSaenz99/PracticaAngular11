@@ -3,8 +3,9 @@ const parser = (req, res, next) => {
     console.log(" -----------------------------------------------------------------------------------------------");
     console.log(`\x1b[33m Request method: ${req.method}`);
     console.log(` Request url: ${req.url}`);
-    console.log(`\x1b[35m Request params: ${JSON.stringify(req.params)}`);
     console.log(`\x1b[35m Request body: ${JSON.stringify(req.body)}`);
+    console.log(`\x1b[35m Request query: ${JSON.stringify(req.query)}`);
+    console.log(`\x1b[35m Request params: ${JSON.stringify(req.params)}`);
     console.log(`\x1b[35m Result cookies: ${JSON.stringify(req.cookies)}`);
 
     console.log(`\x1b[34m Result status code: ${res.statusCode}`);
